@@ -7,13 +7,6 @@ export const mockData = {
       "order": 0,
       "sites": [
         {
-          "id": "site-1778929068955",
-          "name": "猫图 AI",
-          "url": "https://catsapi.com",
-          "description": "AI 生图网站，Image2 3 分/张,每日有免费额度，",
-          "icon": "https://www.faviconextractor.com/favicon/catsapi.com"
-        },
-        {
           "id": "site-1752649007053",
           "name": "BeJson",
           "url": "https://www.bejson.com/",
@@ -515,9 +508,23 @@ export const mockData = {
           "icon": "/sitelogo/www.feishu.cn.ico"
         }
       ]
+    },
+    {
+      "id": "category-1783117468290",
+      "icon": "🌐",
+      "name": "2026世界杯官方指定平台【招代理】",
+      "order": 0,
+      "sites": [
+        {
+          "id": "site-1783117619484",
+          "name": "开云体育",
+          "url": "https://m888.im",
+          "description": "注册送100 1000送278 客服 @kaiyunai",
+          "icon": "https://www.faviconextractor.com/favicon/kaiyun.io"
+        }
+      ]
     }
   ],
-  "title": "斯里兰卡生活导航 吃喝玩乐指南",
-  "search": "google",
-  "_fileSha": "3f4c2aacb63ddf32487b8b4a4354ee2da1d58dab"
+  "title": "猫猫导航🐱",
+  "search": "google"
 }
