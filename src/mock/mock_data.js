@@ -536,7 +536,15 @@ export const mockData = {
       "icon": "🎵",
       "name": "会所ktv",
       "order": 0,
-      "sites": []
+      "sites": [
+        {
+          "id": "site-1783118871834",
+          "name": "君澜会所",
+          "url": "https://t.me/jnhs01",
+          "description": "供应项目：中国外围 莞式服务\n联系方式：@jnhs01\n谷歌地址：Nobel Tower Colombo\n\n注：跟此群商家所有交易务必采用货到付款，凡事无法货到付款，或者要求先款的一律视为骗子\n\n商家入驻：@kaiyunai",
+          "icon": "https://www.faviconextractor.com/favicon/t.me"
+        }
+      ]
     }
   ],
   "title": "猫猫导航🐱",
