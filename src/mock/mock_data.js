@@ -15,9 +15,9 @@ export const mockData = {
         },
         {
           "id": "site-1783119741573",
-          "name": "收录联系飞机",
+          "name": "商家入驻",
           "url": "https://t.me/kaiyunai",
-          "description": "商家收录联系\n",
+          "description": "免费入驻收录 联系飞机\n",
           "icon": ""
         }
       ]
@@ -196,8 +196,8 @@ export const mockData = {
     },
     {
       "id": "design",
-      "name": "设计工具",
-      "icon": "🎨",
+      "name": "快递 空运",
+      "icon": "📦",
       "order": 5,
       "sites": [
         {
@@ -232,8 +232,8 @@ export const mockData = {
     },
     {
       "id": "category-1774510899116",
-      "icon": "☠️",
-      "name": "DDDD",
+      "icon": "🏠",
+      "name": "租房",
       "order": 6,
       "sites": [
         {
@@ -254,8 +254,8 @@ export const mockData = {
     },
     {
       "id": "community",
-      "name": "社区论坛",
-      "icon": "👥",
+      "name": "俱乐部",
+      "icon": "♠",
       "order": 7,
       "sites": [
         {
@@ -361,8 +361,8 @@ export const mockData = {
     },
     {
       "id": "learning",
-      "name": "学习资源",
-      "icon": "📚",
+      "name": "电竞",
+      "icon": "🎮",
       "order": 9,
       "sites": [
         {
@@ -519,7 +519,6 @@ export const mockData = {
       ]
     }
   ],
-  "title": "斯里兰卡生活导航",
-  "search": "google",
-  "_fileSha": "a546f31027d9d3998921892d2f0978005390d8b7"
+  "title": "猫猫导航🐱",
+  "search": "google"
 }
