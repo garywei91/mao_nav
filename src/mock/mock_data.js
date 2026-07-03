@@ -19,6 +19,13 @@ export const mockData = {
           "url": "https://t.me/kaiyunai",
           "description": "免费入驻收录 联系飞机\n",
           "icon": ""
+        },
+        {
+          "id": "site-1783121835747",
+          "name": "MK飞投",
+          "url": "https://t.me/MK888bot?start=38674164_B",
+          "description": "世界杯官方指定投注平台",
+          "icon": ""
         }
       ]
     },
@@ -508,11 +515,19 @@ export const mockData = {
       "icon": "🖐",
       "name": "按摩spa",
       "order": 13,
-      "sites": []
+      "sites": [
+        {
+          "id": "site-1783121773867",
+          "name": "云舒养生馆",
+          "url": "https://t.me/lanka8899",
+          "description": "",
+          "icon": ""
+        }
+      ]
     },
     {
       "id": "category-1783118560884",
-      "icon": "⚽2026🏆",
+      "icon": "⚽",
       "name": "2026世界杯指定平台",
       "order": 14,
       "sites": [
@@ -524,6 +539,13 @@ export const mockData = {
           "icon": "https://ibb.co/DPwd3rLc"
         }
       ]
+    },
+    {
+      "id": "category-1783121689621",
+      "icon": "💴换汇",
+      "name": "换汇",
+      "order": 15,
+      "sites": []
     }
   ],
   "title": "猫猫导航🐱",
