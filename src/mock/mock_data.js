@@ -54,16 +54,16 @@ export const mockData = {
     },
     {
       "id": "ai-tools",
-      "name": "AI智能",
-      "icon": "🤖",
+      "name": "奶茶",
+      "icon": "📱",
       "order": 3,
       "sites": [
         {
-          "id": "chatgpt",
-          "name": "ChatGPT",
-          "url": "https://chat.openai.com",
-          "description": "OpenAI对话AI助手",
-          "icon": "/sitelogo/chat.openai.com.ico"
+          "id": "site-1783120147208",
+          "name": "Bingchun奶茶",
+          "url": "https://t.me/huanhuan16800",
+          "description": "供应项目：奶茶饮品\n\n联系方式：@huanhuan16800\n\n谷歌地址：BING CHUN BAMBALAPITIYA\n\n",
+          "icon": ""
         },
         {
           "id": "claude",
@@ -103,10 +103,10 @@ export const mockData = {
       "sites": [
         {
           "id": "cloudflare",
-          "name": "Cloudflare",
+          "name": "东北饺子馆",
           "url": "https://www.cloudflare.com",
-          "description": "全球CDN和网络安全服务",
-          "icon": "/sitelogo/www.cloudflare.com.ico"
+          "description": "https://t.me/lankashuijiao8",
+          "icon": ""
         },
         {
           "id": "vercel",
