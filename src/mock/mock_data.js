@@ -2,8 +2,8 @@ export const mockData = {
   "categories": [
     {
       "id": "my-favorites",
-      "name": "我的常用",
-      "icon": "♥",
+      "name": "广告",
+      "icon": "🌍",
       "order": 0,
       "sites": [
         {
@@ -25,6 +25,13 @@ export const mockData = {
           "name": "MK飞投",
           "url": "https://t.me/MK888bot?start=38674164_B",
           "description": "世界杯官方指定投注平台",
+          "icon": ""
+        },
+        {
+          "id": "site-1783122973414",
+          "name": "兰卡小跟班- 烟电话卡",
+          "url": "https://t.me/Huihuang2a",
+          "description": "",
           "icon": ""
         }
       ]
