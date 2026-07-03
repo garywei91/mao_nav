@@ -520,7 +520,7 @@ export const mockData = {
           "name": "开云体育",
           "url": "https://m888.im",
           "description": "注册送100 1000送278 客服 @kaiyunai",
-          "icon": "https://www.faviconextractor.com/favicon/kaiyun.io"
+          "icon": "https://ibb.co/DPwd3rLc"
         }
       ]
     }
