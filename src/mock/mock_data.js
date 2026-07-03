@@ -47,6 +47,13 @@ export const mockData = {
           "url": "https://github.com",
           "description": "代码托管平台",
           "icon": "/sitelogo/github.com.ico"
+        },
+        {
+          "id": "site-1783119098130",
+          "name": "开云体育 注册送100",
+          "url": "http://m888.im",
+          "description": "世界杯指定平台 ",
+          "icon": ""
         }
       ]
     },
