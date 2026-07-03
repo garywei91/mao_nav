@@ -3,7 +3,7 @@ export const mockData = {
     {
       "id": "my-favorites",
       "name": "我的常用",
-      "icon": "💥",
+      "icon": "♥♥♥",
       "order": 0,
       "sites": [
         {
@@ -24,7 +24,7 @@ export const mockData = {
     },
     {
       "id": "category-1783118773755",
-      "icon": "🎵",
+      "icon": "🎵👙",
       "name": "会所ktv",
       "order": 1,
       "sites": [
@@ -39,7 +39,7 @@ export const mockData = {
     },
     {
       "id": "category-1783118560884",
-      "icon": "🌐",
+      "icon": "⚽2026🏆",
       "name": "2026世界杯指定平台",
       "order": 2,
       "sites": [
@@ -54,8 +54,8 @@ export const mockData = {
     },
     {
       "id": "ai-tools",
-      "name": "奶茶",
-      "icon": "📱",
+      "name": "奶茶饮品",
+      "icon": "🥤",
       "order": 3,
       "sites": [
         {
@@ -97,8 +97,8 @@ export const mockData = {
     },
     {
       "id": "cloud",
-      "name": "云服务",
-      "icon": "☁️",
+      "name": "中餐 / 饺子馄饨",
+      "icon": "🥟",
       "order": 4,
       "sites": [
         {
@@ -155,7 +155,7 @@ export const mockData = {
     {
       "id": "dev-tools",
       "name": "开发工具",
-      "icon": "🛠️",
+      "icon": "🥤",
       "order": 5,
       "sites": [
         {
