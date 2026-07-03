@@ -19,7 +19,7 @@ export const mockData = {
       "id": "ai-tools",
       "name": "AI智能",
       "icon": "🤖",
-      "order": 1,
+      "order": 13,
       "sites": [
         {
           "id": "chatgpt",
