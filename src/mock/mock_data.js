@@ -527,7 +527,7 @@ export const mockData = {
           "name": "开云体育",
           "url": "https://m888.im",
           "description": "皇家马德里官方赞助商 注册送100 首存复存追加送",
-          "icon": ""
+          "icon": "https://ibb.co/DPwd3rLc"
         }
       ]
     }
