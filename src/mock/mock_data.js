@@ -297,7 +297,7 @@ export const mockData = {
     },
     {
       "id": "finance",
-      "name": "财经投资",
+      "name": "服装鞋帽",
       "icon": "💰",
       "order": 8,
       "sites": [
@@ -397,8 +397,8 @@ export const mockData = {
     },
     {
       "id": "tools",
-      "name": "在线工具",
-      "icon": "⚙️",
+      "name": "签证 保关",
+      "icon": "📚",
       "order": 10,
       "sites": [
         {
@@ -469,8 +469,8 @@ export const mockData = {
     },
     {
       "id": "office",
-      "name": "办公协作",
-      "icon": "💼",
+      "name": "手机电脑数码",
+      "icon": "💻",
       "order": 12,
       "sites": [
         {
@@ -504,10 +504,17 @@ export const mockData = {
       ]
     },
     {
+      "id": "category-1783121568690",
+      "icon": "🖐",
+      "name": "按摩spa",
+      "order": 13,
+      "sites": []
+    },
+    {
       "id": "category-1783118560884",
       "icon": "⚽2026🏆",
       "name": "2026世界杯指定平台",
-      "order": 13,
+      "order": 14,
       "sites": [
         {
           "id": "site-1783118616613",
