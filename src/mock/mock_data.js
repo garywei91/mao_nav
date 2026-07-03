@@ -3,7 +3,7 @@ export const mockData = {
     {
       "id": "my-favorites",
       "name": "我的常用",
-      "icon": "♥♥♥",
+      "icon": "♥",
       "order": 0,
       "sites": [
         {
@@ -24,7 +24,7 @@ export const mockData = {
     },
     {
       "id": "category-1783118773755",
-      "icon": "🎵👙",
+      "icon": "🎵",
       "name": "会所ktv",
       "order": 1,
       "sites": [
@@ -140,7 +140,7 @@ export const mockData = {
     {
       "id": "dev-tools",
       "name": "超市",
-      "icon": "🎁🛒",
+      "icon": "🛒",
       "order": 4,
       "sites": [
         {
