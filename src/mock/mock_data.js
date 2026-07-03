@@ -38,74 +38,16 @@ export const mockData = {
       ]
     },
     {
-      "id": "category-1783118560884",
-      "icon": "⚽2026🏆",
-      "name": "2026世界杯指定平台",
-      "order": 2,
-      "sites": [
-        {
-          "id": "site-1783118616613",
-          "name": "开云体育",
-          "url": "https://m888.im",
-          "description": "皇家马德里官方赞助商 注册送100 首存复存追加送",
-          "icon": "https://ibb.co/DPwd3rLc"
-        }
-      ]
-    },
-    {
-      "id": "ai-tools",
-      "name": "奶茶饮品",
-      "icon": "🥤",
-      "order": 3,
-      "sites": [
-        {
-          "id": "site-1783120147208",
-          "name": "Bingchun奶茶",
-          "url": "https://t.me/huanhuan16800",
-          "description": "供应项目：奶茶饮品\n\n联系方式：@huanhuan16800\n\n谷歌地址：BING CHUN BAMBALAPITIYA\n\n",
-          "icon": ""
-        },
-        {
-          "id": "claude",
-          "name": "Claude",
-          "url": "https://claude.ai",
-          "description": "Anthropic AI助手",
-          "icon": "/sitelogo/claude.ai.ico"
-        },
-        {
-          "id": "midjourney",
-          "name": "Midjourney",
-          "url": "https://www.midjourney.com",
-          "description": "AI图像生成工具",
-          "icon": "/sitelogo/www.midjourney.com.ico"
-        },
-        {
-          "id": "copilot",
-          "name": "GitHub Copilot",
-          "url": "https://github.com/features/copilot",
-          "description": "AI代码助手",
-          "icon": "/sitelogo/github.com.ico"
-        },
-        {
-          "id": "cursor",
-          "name": "Cursor",
-          "url": "https://cursor.sh",
-          "description": "AI代码编辑器",
-          "icon": "/sitelogo/cursor.sh.ico"
-        }
-      ]
-    },
-    {
       "id": "cloud",
       "name": "中餐 / 饺子馄饨",
       "icon": "🥟",
-      "order": 4,
+      "order": 2,
       "sites": [
         {
           "id": "cloudflare",
           "name": "东北饺子馆",
-          "url": "https://www.cloudflare.com",
-          "description": "https://t.me/lankashuijiao8",
+          "url": "https://t.me/lankashuijiao8",
+          "description": "手工现包水饺 -多种口味-斯里兰卡\n营业时间 8:00-12:00-全科伦坡可配送\n东北老味道-家的温暖！\n订餐✈️：@meishi111111 兰卡交流：https://t.me/Lanka819",
           "icon": ""
         },
         {
@@ -153,10 +95,53 @@ export const mockData = {
       ]
     },
     {
-      "id": "dev-tools",
-      "name": "开发工具",
+      "id": "ai-tools",
+      "name": "奶茶饮品",
       "icon": "🥤",
-      "order": 5,
+      "order": 3,
+      "sites": [
+        {
+          "id": "site-1783120147208",
+          "name": "Bingchun奶茶",
+          "url": "https://t.me/huanhuan16800",
+          "description": "供应项目：奶茶饮品\n\n联系方式：@huanhuan16800\n\n谷歌地址：BING CHUN BAMBALAPITIYA\n\n",
+          "icon": ""
+        },
+        {
+          "id": "claude",
+          "name": "Claude",
+          "url": "https://claude.ai",
+          "description": "Anthropic AI助手",
+          "icon": "/sitelogo/claude.ai.ico"
+        },
+        {
+          "id": "midjourney",
+          "name": "Midjourney",
+          "url": "https://www.midjourney.com",
+          "description": "AI图像生成工具",
+          "icon": "/sitelogo/www.midjourney.com.ico"
+        },
+        {
+          "id": "copilot",
+          "name": "GitHub Copilot",
+          "url": "https://github.com/features/copilot",
+          "description": "AI代码助手",
+          "icon": "/sitelogo/github.com.ico"
+        },
+        {
+          "id": "cursor",
+          "name": "Cursor",
+          "url": "https://cursor.sh",
+          "description": "AI代码编辑器",
+          "icon": "/sitelogo/cursor.sh.ico"
+        }
+      ]
+    },
+    {
+      "id": "dev-tools",
+      "name": "超市",
+      "icon": "🎁🛒",
+      "order": 4,
       "sites": [
         {
           "id": "github",
@@ -213,7 +198,7 @@ export const mockData = {
       "id": "design",
       "name": "设计工具",
       "icon": "🎨",
-      "order": 6,
+      "order": 5,
       "sites": [
         {
           "id": "figma",
@@ -249,7 +234,7 @@ export const mockData = {
       "id": "category-1774510899116",
       "icon": "☠️",
       "name": "DDDD",
-      "order": 7,
+      "order": 6,
       "sites": [
         {
           "id": "site-1774510993770",
@@ -271,7 +256,7 @@ export const mockData = {
       "id": "community",
       "name": "社区论坛",
       "icon": "👥",
-      "order": 8,
+      "order": 7,
       "sites": [
         {
           "id": "linuxdo",
@@ -314,7 +299,7 @@ export const mockData = {
       "id": "finance",
       "name": "财经投资",
       "icon": "💰",
-      "order": 9,
+      "order": 8,
       "sites": [
         {
           "id": "binance",
@@ -378,7 +363,7 @@ export const mockData = {
       "id": "learning",
       "name": "学习资源",
       "icon": "📚",
-      "order": 10,
+      "order": 9,
       "sites": [
         {
           "id": "mdn",
@@ -414,7 +399,7 @@ export const mockData = {
       "id": "tools",
       "name": "在线工具",
       "icon": "⚙️",
-      "order": 11,
+      "order": 10,
       "sites": [
         {
           "id": "json-formatter",
@@ -450,7 +435,7 @@ export const mockData = {
       "id": "entertainment",
       "name": "娱乐休闲",
       "icon": "🎮",
-      "order": 12,
+      "order": 11,
       "sites": [
         {
           "id": "bilibili",
@@ -486,7 +471,7 @@ export const mockData = {
       "id": "office",
       "name": "办公协作",
       "icon": "💼",
-      "order": 13,
+      "order": 12,
       "sites": [
         {
           "id": "notion",
@@ -515,6 +500,21 @@ export const mockData = {
           "url": "https://www.feishu.cn",
           "description": "企业协作平台",
           "icon": "/sitelogo/www.feishu.cn.ico"
+        }
+      ]
+    },
+    {
+      "id": "category-1783118560884",
+      "icon": "⚽2026🏆",
+      "name": "2026世界杯指定平台",
+      "order": 13,
+      "sites": [
+        {
+          "id": "site-1783118616613",
+          "name": "开云体育",
+          "url": "https://m888.im",
+          "description": "皇家马德里官方赞助商 注册送100 首存复存追加送",
+          "icon": "https://ibb.co/DPwd3rLc"
         }
       ]
     }
