@@ -12,6 +12,13 @@ export const mockData = {
           "url": "http://m888.im",
           "description": "世界杯指定平台 ",
           "icon": ""
+        },
+        {
+          "id": "site-1783119741573",
+          "name": "收录联系飞机",
+          "url": "https://t.me/kaiyunai",
+          "description": "商家收录联系\n",
+          "icon": ""
         }
       ]
     },
@@ -512,7 +519,6 @@ export const mockData = {
       ]
     }
   ],
-  "title": "斯里兰卡生活导航",
-  "search": "google",
-  "_fileSha": "3fdd90fe131d1be12faeb8e0e2565c50b73da333"
+  "title": "猫猫导航🐱",
+  "search": "google"
 }
