@@ -427,20 +427,6 @@ export const mockData = {
           "url": "https://t.me/YunTianDianJingGuan",
           "description": "供应项目：电竞 网吧 休闲  娱乐 咖啡\n\n联系方式：@YunTianDianJingGuan\n电话：0763100033\n\n谷歌地址：China town〔中国城〕- 2楼",
           "icon": ""
-        },
-        {
-          "id": "runoob",
-          "name": "菜鸟教程",
-          "url": "https://www.runoob.com",
-          "description": "编程技术教程",
-          "icon": "/sitelogo/www.runoob.com.ico"
-        },
-        {
-          "id": "coursera",
-          "name": "Coursera",
-          "url": "https://www.coursera.org",
-          "description": "在线课程平台",
-          "icon": "/sitelogo/www.coursera.org.ico"
         }
       ]
     },
