@@ -287,10 +287,10 @@ export const mockData = {
       "sites": [
         {
           "id": "site-1774510993770",
-          "name": "RiskTest",
-          "url": "https://risk.copolits.com/",
-          "description": "检测风控",
-          "icon": "https://www.faviconextractor.com/favicon/risk.copolits.com"
+          "name": "屿光兰卡房屋租赁",
+          "url": "https://t.me/yuguanglankaproperties",
+          "description": "屿光兰卡房屋租赁",
+          "icon": ""
         },
         {
           "id": "site-1774511036557",
