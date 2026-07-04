@@ -200,35 +200,7 @@ export const mockData = {
           "name": "Game Zone-线下德州",
           "url": "https://t.me/npc85",
           "description": "Game Zone（私人订制线下德州poker俱乐部）\n\n供应项目：德州扑克、炸金花、牛牛、打鱼机等棋牌等各类竞技游戏\n\n联系方式： @npc85\n\n地址：星辰私人订制KTV   一楼\n\n",
-          "icon": "/sitelogo/linux.do.ico"
-        },
-        {
-          "id": "nodeseek",
-          "name": "NodeSeek",
-          "url": "https://www.nodeseek.com",
-          "description": "极客技术社区",
-          "icon": "/sitelogo/www.nodeseek.com.ico"
-        },
-        {
-          "id": "stackoverflow",
-          "name": "Stack Overflow",
-          "url": "https://stackoverflow.com",
-          "description": "程序员问答社区",
-          "icon": "/sitelogo/stackoverflow.com.ico"
-        },
-        {
-          "id": "v2ex",
-          "name": "V2EX",
-          "url": "https://www.v2ex.com",
-          "description": "创意工作者社区",
-          "icon": "/sitelogo/www.v2ex.com.ico"
-        },
-        {
-          "id": "52pojie",
-          "name": "吾爱破解",
-          "url": "https://www.52pojie.cn/",
-          "description": "软件安全与破解技术论坛",
-          "icon": "/sitelogo/www.52pojie.cn.ico"
+          "icon": ""
         }
       ]
     },
