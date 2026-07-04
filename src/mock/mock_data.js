@@ -33,20 +33,6 @@ export const mockData = {
           "url": "https://t.me/lanka68com",
           "description": "",
           "icon": "https://ibb.co/v92xqZ2"
-        },
-        {
-          "id": "site-1783196317493",
-          "name": "钻石会所",
-          "url": "https://t.me/zsxx01",
-          "description": "@zsxx001 斯里兰卡排名第一的钻石会所 TG客服： @zsxx01 备用客服： @zsxx88 出勤频道：https://t.me/zsxx001 交流群：https://t.me/zsxx88888",
-          "icon": ""
-        },
-        {
-          "id": "site-1783196342445",
-          "name": "兰卡名媛会所24H接单",
-          "url": "https://t.me/myhs888888",
-          "description": "选妃频道：@myhs888888\n下单飞机：@myhs888\n高质量越南精品绿茶。24小时接单。",
-          "icon": ""
         }
       ]
     },
@@ -96,6 +82,20 @@ export const mockData = {
           "name": "金源会所阿东频道",
           "url": "https://t.me/nka1666666",
           "description": "供应项目：莞式一条龙·按摩SPA·专业抓龙筋\n\n联系方式：@nka666666  @nka111111\n\n谷歌地址：整个兰卡都可以送· 24小时在线",
+          "icon": ""
+        },
+        {
+          "id": "site-1783196317493",
+          "name": "钻石会所",
+          "url": "https://t.me/zsxx01",
+          "description": "@zsxx001 斯里兰卡排名第一的钻石会所 TG客服： @zsxx01 备用客服： @zsxx88 出勤频道：https://t.me/zsxx001 交流群：https://t.me/zsxx88888",
+          "icon": ""
+        },
+        {
+          "id": "site-1783196342445",
+          "name": "兰卡名媛会所24H接单",
+          "url": "https://t.me/myhs888888",
+          "description": "选妃频道：@myhs888888\n下单飞机：@myhs888\n高质量越南精品绿茶。24小时接单。",
           "icon": ""
         }
       ]
