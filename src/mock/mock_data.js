@@ -157,6 +157,13 @@ export const mockData = {
           "url": "https://t.me/GGLKKD8",
           "description": "商家名称： DD兰卡空运快递\n\n供应项目：兰卡空运快递\n\n联系方式： @dududu268\n\n谷歌地址： The Auresta Colombo 一楼",
           "icon": ""
+        },
+        {
+          "id": "site-1783190446399",
+          "name": "wm物流",
+          "url": "https://t.me/wmwuliu",
+          "description": "商家名称：快递\n\n供应项目：中国-兰卡  兰卡-中国  物流\n\n联系方式：@wmwuliu\n只有一个号 物流 宝石 换汇 烟 酒 泰国果冻（快递不到客户手里 不会提前要钱，换汇面对面交易） 小心骗子",
+          "icon": ""
         }
       ]
     },
