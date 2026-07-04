@@ -2,7 +2,7 @@ export const mockData = {
   "categories": [
     {
       "id": "my-favorites",
-      "name": "广告",
+      "name": "广告 商务",
       "icon": "🌍",
       "order": 0,
       "sites": [
@@ -76,6 +76,13 @@ export const mockData = {
           "url": "https://t.me/jnhs01",
           "description": "供应项目：中国外围 莞式服务\n联系方式：@jnhs01\n谷歌地址：Nobel Tower Colombo\n\n注：跟此群商家所有交易务必采用货到付款，凡事无法货到付款，或者要求先款的一律视为骗子\n\n商家入驻：@kaiyunai",
           "icon": "https://www.faviconextractor.com/favicon/t.me"
+        },
+        {
+          "id": "site-1783124700035",
+          "name": "金源会所阿东频道",
+          "url": "https://t.me/nka1666666",
+          "description": "供应项目：莞式一条龙·按摩SPA·专业抓龙筋\n\n联系方式：@nka666666  @nka111111\n\n谷歌地址：整个兰卡都可以送· 24小时在线",
+          "icon": ""
         }
       ]
     },
@@ -302,9 +309,9 @@ export const mockData = {
       "sites": [
         {
           "id": "linuxdo",
-          "name": "Linux.do",
-          "url": "https://linux.do",
-          "description": "Linux与开源技术社区",
+          "name": "Game Zone-线下德州",
+          "url": "https://t.me/npc85",
+          "description": "Game Zone（私人订制线下德州poker俱乐部）\n\n供应项目：德州扑克、炸金花、牛牛、打鱼机等棋牌等各类竞技游戏\n\n联系方式： @npc85\n\n地址：星辰私人订制KTV   一楼\n\n",
           "icon": "/sitelogo/linux.do.ico"
         },
         {
@@ -577,7 +584,7 @@ export const mockData = {
     },
     {
       "id": "category-1783121689621",
-      "icon": "💴换汇",
+      "icon": "💴",
       "name": "换汇",
       "order": 15,
       "sites": [
@@ -594,11 +601,17 @@ export const mockData = {
           "url": "https://t.me/Dongfengpay66",
           "description": "",
           "icon": ""
+        },
+        {
+          "id": "site-1783124648822",
+          "name": "鼎诚汇兑",
+          "url": "https://t.me/DCHD888",
+          "description": "USDT兑全球币种转账送现\n\n联系方式：@DCHD888\n\n",
+          "icon": ""
         }
       ]
     }
   ],
-  "title": "Lanka68.com",
-  "search": "google",
-  "_fileSha": "be9e7e2b28e5fcdc2ccb752e700d269c1583c33d"
+  "title": "猫猫导航🐱",
+  "search": "google"
 }
