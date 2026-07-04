@@ -405,7 +405,15 @@ export const mockData = {
       "icon": "👥",
       "name": "美容美发",
       "order": 0,
-      "sites": []
+      "sites": [
+        {
+          "id": "site-1783191027950",
+          "name": "1019沙龙美发",
+          "url": "https://t.me/XLLL0001",
+          "description": "供应项目：美发 美甲 美睫 按摩 \n\n联系方式：@XLLL0001\n\n谷歌地址：418 R.A.De Mel Mawatha,colombo 中航科技楼一楼",
+          "icon": ""
+        }
+      ]
     }
   ],
   "title": "lanka68.com",
