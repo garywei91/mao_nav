@@ -580,6 +580,13 @@ export const mockData = {
           "url": "https://t.me/Huihuang2a",
           "description": "",
           "icon": ""
+        },
+        {
+          "id": "site-1783123109595",
+          "name": "东风 兰卡换汇",
+          "url": "https://t.me/Dongfengpay66",
+          "description": "",
+          "icon": ""
         }
       ]
     }
