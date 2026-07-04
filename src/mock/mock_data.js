@@ -399,6 +399,13 @@ export const mockData = {
           "icon": "https://ibb.co/DPwd3rLc"
         }
       ]
+    },
+    {
+      "id": "category-1783190997647",
+      "icon": "👥",
+      "name": "美容美发",
+      "order": 0,
+      "sites": []
     }
   ],
   "title": "lanka68.com",
