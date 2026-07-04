@@ -170,48 +170,6 @@ export const mockData = {
           "url": "https://github.com",
           "description": "代码托管平台",
           "icon": "/sitelogo/github.com.ico"
-        },
-        {
-          "id": "vscode",
-          "name": "VS Code",
-          "url": "https://code.visualstudio.com",
-          "description": "代码编辑器",
-          "icon": "/sitelogo/code.visualstudio.com.ico"
-        },
-        {
-          "id": "webstorm",
-          "name": "WebStorm",
-          "url": "https://www.jetbrains.com/webstorm/",
-          "description": "专业前端IDE",
-          "icon": "/sitelogo/www.jetbrains.com.ico"
-        },
-        {
-          "id": "postman",
-          "name": "Postman",
-          "url": "https://www.postman.com",
-          "description": "API测试工具",
-          "icon": "/sitelogo/www.postman.com.ico"
-        },
-        {
-          "id": "android-studio",
-          "name": "Android Studio",
-          "url": "https://developer.android.com/studio",
-          "description": "Android官方开发工具",
-          "icon": "/sitelogo/developer.android.com.ico"
-        },
-        {
-          "id": "oracle-java",
-          "name": "Oracle Java",
-          "url": "https://www.oracle.com/java/technologies/downloads/",
-          "description": "Oracle官方Java下载",
-          "icon": "/sitelogo/www.oracle.com.ico"
-        },
-        {
-          "id": "site-1774438333579",
-          "name": "freemail",
-          "url": "https://mail.chatgpt.org.uk/",
-          "description": "免费邮箱站点",
-          "icon": "https://www.faviconextractor.com/favicon/mail.chatgpt.org.uk"
         }
       ]
     },
