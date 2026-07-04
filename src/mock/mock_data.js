@@ -426,6 +426,13 @@ export const mockData = {
           "url": "https://t.me/wen5250",
           "description": "供应项目：美甲，美睫 ，皮肤管理（痘痘肌调理，去斑调理，刷酸等），按摩，采耳等\n\n联系方式：✈️：@wen5250\n                 微信：Vip_zw15888\n                 WA:+94 773237308\n\n谷歌地址：3AM  HAIR  SALON(科伦坡店）",
           "icon": ""
+        },
+        {
+          "id": "site-1783191159282",
+          "name": "CHEN橙美甲美睫皮肤管理",
+          "url": "https://t.me/CC991224",
+          "description": "转账先打视频确认 CHEN橙美甲美睫工作室 预约电话776842637微信号CC991224x 别问有没有休息上下班只要美甲美睫随叫随到🫡",
+          "icon": ""
         }
       ]
     }
