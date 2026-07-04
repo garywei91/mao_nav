@@ -219,10 +219,10 @@ export const mockData = {
       "sites": [
         {
           "id": "binance",
-          "name": "币安",
-          "url": "https://www.binance.com",
-          "description": "加密货币交易平台",
-          "icon": "/sitelogo/www.binance.com.ico"
+          "name": "衣品服饰💕斯里兰卡现货",
+          "url": "https://t.me/yipin588",
+          "description": "供应项目：衣鞋包饰 香水 皮带 眼镜\n\n联系方式：@yipin588\n微信：mengbao998866\n\n谷歌地址：Securatec Solutions (Pvt) Ltd.斯里兰卡\n",
+          "icon": ""
         }
       ]
     },
