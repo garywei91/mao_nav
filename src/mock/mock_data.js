@@ -419,6 +419,13 @@ export const mockData = {
           "url": "https://t.me/Kelunpo3AM888",
           "description": "联系方式：@kelunpo3AM\n\n\n电话：705288888\n\n谷歌地址：3AM HAIR SALON",
           "icon": ""
+        },
+        {
+          "id": "site-1783191130248",
+          "name": "素美皇家美甲美睫皮肤管理",
+          "url": "https://t.me/wen5250",
+          "description": "供应项目：美甲，美睫 ，皮肤管理（痘痘肌调理，去斑调理，刷酸等），按摩，采耳等\n\n联系方式：✈️：@wen5250\n                 微信：Vip_zw15888\n                 WA:+94 773237308\n\n谷歌地址：3AM  HAIR  SALON(科伦坡店）",
+          "icon": ""
         }
       ]
     }
