@@ -456,6 +456,20 @@ export const mockData = {
           "url": "https://t.me/srilankasoso",
           "description": "供应项目：工作签证、商务签证，保关，租房，商务翻译，特殊文件办理，bc线上营业执照，各类公司注册营业执照办理\n\n联系方式：@srilankasoso\n\n谷歌地址：屿光兰卡信息服务公司",
           "icon": "/sitelogo/tinypng.com.ico"
+        },
+        {
+          "id": "site-1783125362238",
+          "name": "BOI公司代注册、线上线下博彩许可代申请、工作签证",
+          "url": "https://t.me/yybyj",
+          "description": "供应项目：斯里兰卡BOI公司代注册、线上线下博彩许可代申请、各类疑难工作签证办理等业务\n\n联系方式： @yybyj\n\n地址：面谈",
+          "icon": ""
+        },
+        {
+          "id": "site-1783125431431",
+          "name": "签证 一手渠道 保关",
+          "url": "https://t.me/Qiutian111111",
+          "description": "供应项目：旅游签转工作签～商务签转工作签，一手渠道欢迎代理合作！兰卡一手带关保关服务\n\n联系方式：@Qiutian111111\n\n谷歌地址：Level 9, Tower 3, Astoria422 R. A. De Mel Mawatha, Colombo 3, Sri Lanka",
+          "icon": ""
         }
       ]
     },
