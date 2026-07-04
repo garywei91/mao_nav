@@ -87,31 +87,16 @@ export const mockData = {
       ]
     },
     {
-      "id": "cloud",
-      "name": "中餐 / 饺子馄饨",
-      "icon": "🥟",
+      "id": "category-1783121568690",
+      "icon": "🖐",
+      "name": "按摩spa",
       "order": 2,
       "sites": [
         {
-          "id": "cloudflare",
-          "name": "东北饺子馆",
-          "url": "https://t.me/lankashuijiao8",
-          "description": "手工现包水饺 -多种口味-斯里兰卡\n营业时间 8:00-12:00-全科伦坡可配送\n东北老味道-家的温暖！\n订餐✈️：@meishi111111 兰卡交流：https://t.me/Lanka819",
-          "icon": ""
-        }
-      ]
-    },
-    {
-      "id": "ai-tools",
-      "name": "奶茶饮品",
-      "icon": "🥤",
-      "order": 3,
-      "sites": [
-        {
-          "id": "site-1783120147208",
-          "name": "Bingchun奶茶",
-          "url": "https://t.me/huanhuan16800",
-          "description": "供应项目：奶茶饮品\n\n联系方式：@huanhuan16800\n\n谷歌地址：BING CHUN BAMBALAPITIYA\n\n",
+          "id": "site-1783121773867",
+          "name": "云舒养生馆 纯华人上门",
+          "url": "https://t.me/lanka8899",
+          "description": "疏通背部经络的六大益处\n养肾，强身，护肝，解乏，缓颈椎，通经络 -环环相扣，层层相生\n经络一通，百脉皆畅\n气血一和，万病自消\n养生之道，疏通为本\n🉑上门 🉑到店",
           "icon": ""
         }
       ]
@@ -120,7 +105,7 @@ export const mockData = {
       "id": "dev-tools",
       "name": "超市",
       "icon": "🛒",
-      "order": 4,
+      "order": 3,
       "sites": [
         {
           "id": "github",
@@ -160,10 +145,40 @@ export const mockData = {
       ]
     },
     {
+      "id": "ai-tools",
+      "name": "奶茶饮品",
+      "icon": "🥤",
+      "order": 4,
+      "sites": [
+        {
+          "id": "site-1783120147208",
+          "name": "Bingchun奶茶",
+          "url": "https://t.me/huanhuan16800",
+          "description": "供应项目：奶茶饮品\n\n联系方式：@huanhuan16800\n\n谷歌地址：BING CHUN BAMBALAPITIYA\n\n",
+          "icon": ""
+        }
+      ]
+    },
+    {
+      "id": "cloud",
+      "name": "中餐 ",
+      "icon": "🥟",
+      "order": 5,
+      "sites": [
+        {
+          "id": "cloudflare",
+          "name": "东北饺子馆",
+          "url": "https://t.me/lankashuijiao8",
+          "description": "手工现包水饺 -多种口味-斯里兰卡\n营业时间 8:00-12:00-全科伦坡可配送\n东北老味道-家的温暖！\n订餐✈️：@meishi111111 兰卡交流：https://t.me/Lanka819",
+          "icon": ""
+        }
+      ]
+    },
+    {
       "id": "design",
       "name": "快递 空运",
       "icon": "📦",
-      "order": 5,
+      "order": 6,
       "sites": [
         {
           "id": "figma",
@@ -206,7 +221,7 @@ export const mockData = {
       "id": "category-1774510899116",
       "icon": "🏠",
       "name": "租房 房产 珠宝",
-      "order": 6,
+      "order": 7,
       "sites": [
         {
           "id": "site-1774510993770",
@@ -235,7 +250,7 @@ export const mockData = {
       "id": "community",
       "name": "俱乐部",
       "icon": "♠",
-      "order": 7,
+      "order": 8,
       "sites": [
         {
           "id": "linuxdo",
@@ -250,35 +265,13 @@ export const mockData = {
       "id": "finance",
       "name": "服装鞋帽",
       "icon": "💰",
-      "order": 8,
+      "order": 9,
       "sites": [
         {
           "id": "binance",
           "name": "衣品服饰💕斯里兰卡现货",
           "url": "https://t.me/yipin588",
           "description": "供应项目：衣鞋包饰 香水 皮带 眼镜\n\n联系方式：@yipin588\n微信：mengbao998866\n\n谷歌地址：Securatec Solutions (Pvt) Ltd.斯里兰卡\n",
-          "icon": ""
-        }
-      ]
-    },
-    {
-      "id": "learning",
-      "name": "电竞",
-      "icon": "🎮",
-      "order": 9,
-      "sites": [
-        {
-          "id": "mdn",
-          "name": "悟空电竞",
-          "url": "https://t.me/wangba000111",
-          "description": "供应项目：上网 零食\n\n联系方式：0774289678\ntelegram   @wangba000111\n\n谷歌地址：WuKONG INTERNET CAFE, 333 Galle Rd, Colombo 00300",
-          "icon": "/sitelogo/developer.mozilla.org.ico"
-        },
-        {
-          "id": "w3school",
-          "name": "云天电竞馆",
-          "url": "https://t.me/YunTianDianJingGuan",
-          "description": "供应项目：电竞 网吧 休闲  娱乐 咖啡\n\n联系方式：@YunTianDianJingGuan\n电话：0763100033\n\n谷歌地址：China town〔中国城〕- 2楼",
           "icon": ""
         }
       ]
@@ -327,25 +320,10 @@ export const mockData = {
       ]
     },
     {
-      "id": "category-1783121568690",
-      "icon": "🖐",
-      "name": "按摩spa",
-      "order": 11,
-      "sites": [
-        {
-          "id": "site-1783121773867",
-          "name": "云舒养生馆 纯华人上门",
-          "url": "https://t.me/lanka8899",
-          "description": "疏通背部经络的六大益处\n养肾，强身，护肝，解乏，缓颈椎，通经络 -环环相扣，层层相生\n经络一通，百脉皆畅\n气血一和，万病自消\n养生之道，疏通为本\n🉑上门 🉑到店",
-          "icon": ""
-        }
-      ]
-    },
-    {
       "id": "category-1783190997647",
       "icon": "👥",
       "name": "美容美发",
-      "order": 12,
+      "order": 11,
       "sites": [
         {
           "id": "site-1783191027950",
@@ -373,6 +351,28 @@ export const mockData = {
           "name": "CHEN橙美甲美睫皮肤管理",
           "url": "https://t.me/CC991224",
           "description": "转账先打视频确认 CHEN橙美甲美睫工作室 预约电话776842637微信号CC991224x 别问有没有休息上下班只要美甲美睫随叫随到🫡",
+          "icon": ""
+        }
+      ]
+    },
+    {
+      "id": "learning",
+      "name": "电竞",
+      "icon": "🎮",
+      "order": 12,
+      "sites": [
+        {
+          "id": "mdn",
+          "name": "悟空电竞",
+          "url": "https://t.me/wangba000111",
+          "description": "供应项目：上网 零食\n\n联系方式：0774289678\ntelegram   @wangba000111\n\n谷歌地址：WuKONG INTERNET CAFE, 333 Galle Rd, Colombo 00300",
+          "icon": "/sitelogo/developer.mozilla.org.ico"
+        },
+        {
+          "id": "w3school",
+          "name": "云天电竞馆",
+          "url": "https://t.me/YunTianDianJingGuan",
+          "description": "供应项目：电竞 网吧 休闲  娱乐 咖啡\n\n联系方式：@YunTianDianJingGuan\n电话：0763100033\n\n谷歌地址：China town〔中国城〕- 2楼",
           "icon": ""
         }
       ]
