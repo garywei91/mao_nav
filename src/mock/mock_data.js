@@ -150,6 +150,13 @@ export const mockData = {
           "url": "https://t.me/dtgjwl",
           "description": "商家名称：筋斗云速运\n\n供应项目：淘宝代买， 国际快递，\n普货，电子产品，烟酒槟榔，一切国内至蓝卡的运输 打造兰卡最快物流公司，承接公司合作\n\n联系方式： @dtgjwl\n\n谷歌地址：科伦坡",
           "icon": ""
+        },
+        {
+          "id": "site-1783190404026",
+          "name": " DD兰卡空运快递",
+          "url": "https://t.me/GGLKKD8",
+          "description": "商家名称： DD兰卡空运快递\n\n供应项目：兰卡空运快递\n\n联系方式： @dududu268\n\n谷歌地址： The Auresta Colombo 一楼",
+          "icon": ""
         }
       ]
     },
