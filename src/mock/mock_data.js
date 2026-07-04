@@ -416,17 +416,17 @@ export const mockData = {
       "sites": [
         {
           "id": "mdn",
-          "name": "MDN Web Docs",
-          "url": "https://developer.mozilla.org",
-          "description": "Web开发权威文档",
+          "name": "悟空电竞",
+          "url": "https://t.me/wangba000111",
+          "description": "供应项目：上网 零食\n\n联系方式：0774289678\ntelegram   @wangba000111\n\n谷歌地址：WuKONG INTERNET CAFE, 333 Galle Rd, Colombo 00300",
           "icon": "/sitelogo/developer.mozilla.org.ico"
         },
         {
           "id": "w3school",
-          "name": "W3Schools",
-          "url": "https://www.w3schools.com",
-          "description": "Web技术教程",
-          "icon": "/sitelogo/www.w3schools.com.ico"
+          "name": "云天电竞馆",
+          "url": "https://t.me/YunTianDianJingGuan",
+          "description": "供应项目：电竞 网吧 休闲  娱乐 咖啡\n\n联系方式：@YunTianDianJingGuan\n电话：0763100033\n\n谷歌地址：China town〔中国城〕- 2楼",
+          "icon": ""
         },
         {
           "id": "runoob",
