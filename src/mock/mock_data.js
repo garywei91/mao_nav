@@ -119,6 +119,13 @@ export const mockData = {
           "url": "https://t.me/HMTGD118",
           "description": "📝 悍马糖，果冻，延时喷雾\n\n不辜负顾客，不夸大宣传，没有套路只有真诚。\n只要您需要，我随时都在\n\n🕒 营业时间: 24小时营业\n🟢 状态: 正常营业",
           "icon": ""
+        },
+        {
+          "id": "site-1783197253379",
+          "name": "✨ 正宗泰国果冻小蓝片",
+          "url": "https://t.me/guodongge12",
+          "description": "#成人用品 #果冻\n\n📝 供应项目：果冻单/双效，小蓝片\n\n✈️ 飞机: @guodongge12",
+          "icon": ""
         }
       ]
     },
