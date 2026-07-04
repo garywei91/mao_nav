@@ -124,10 +124,38 @@ export const mockData = {
       "sites": [
         {
           "id": "github",
-          "name": "GitHub",
-          "url": "https://github.com",
-          "description": "代码托管平台",
-          "icon": "/sitelogo/github.com.ico"
+          "name": "中国超市 Chinese supermarket ",
+          "url": "https://t.me/ZGCSNANA",
+          "description": "供应项目：中国零食，饮料，调味品，日用品\n\n联系方式：@ZGCSNANA\n\n谷歌地址：Chinese supermarket",
+          "icon": ""
+        },
+        {
+          "id": "site-1783190886678",
+          "name": "中新超市",
+          "url": "https://t.me/ZhongSingchaoshi",
+          "description": "供应项目：食品.日用品\n\n联系方式：@ZX68968\n\n谷歌地址：278-280 R A  De Mel Mawatha Colombo 03\n",
+          "icon": ""
+        },
+        {
+          "id": "site-1783190925168",
+          "name": "佳佳超市",
+          "url": "https://t.me/jiajiachaoshi668",
+          "description": "供应项目：超市/生鲜/奶茶/卤味/移民局业务\n\n联系方式：@jiajiachaoshi668\n\n谷歌地址：佳佳超市Chinese supermarket",
+          "icon": ""
+        },
+        {
+          "id": "site-1783190944033",
+          "name": "联合超市 United Mart",
+          "url": "https://t.me/umartsl",
+          "description": "供应项目：海鲜。专门提供高品质海鲜（目前只有海鲜。很快会增加其他产品）\n\n联系方式：@umartsl\n\n谷歌地址：54 Walukarama Road. Colombo 3",
+          "icon": ""
+        },
+        {
+          "id": "site-1783190959096",
+          "name": "iCanMall  超市",
+          "url": "https://t.me/btc6599999",
+          "description": "供应项目：食品、生鲜、日用百货\n\n联系方式：@btc6599999\n\n谷歌地址：388，Galle Road,Colombo-03.（Google搜索iCan Mall）",
+          "icon": ""
         }
       ]
     },
