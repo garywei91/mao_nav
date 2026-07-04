@@ -327,31 +327,52 @@ export const mockData = {
       ]
     },
     {
-      "id": "office",
-      "name": "手机电脑数码",
-      "icon": "💻",
-      "order": 11,
-      "sites": [
-        {
-          "id": "notion",
-          "name": "哈普森手机/电脑/监控",
-          "url": "https://t.me/jimmychijitui",
-          "description": "供应项目：监控/网络布线/门禁/桌面监控/手机/电脑/一体机/笔记本/办公设备\n\n联系方式：@jimmychijitui\n\n谷歌地址：全城送货",
-          "icon": ""
-        }
-      ]
-    },
-    {
       "id": "category-1783121568690",
       "icon": "🖐",
       "name": "按摩spa",
-      "order": 12,
+      "order": 11,
       "sites": [
         {
           "id": "site-1783121773867",
           "name": "云舒养生馆 纯华人上门",
           "url": "https://t.me/lanka8899",
           "description": "疏通背部经络的六大益处\n养肾，强身，护肝，解乏，缓颈椎，通经络 -环环相扣，层层相生\n经络一通，百脉皆畅\n气血一和，万病自消\n养生之道，疏通为本\n🉑上门 🉑到店",
+          "icon": ""
+        }
+      ]
+    },
+    {
+      "id": "category-1783190997647",
+      "icon": "👥",
+      "name": "美容美发",
+      "order": 12,
+      "sites": [
+        {
+          "id": "site-1783191027950",
+          "name": "1019沙龙美发",
+          "url": "https://t.me/XLLL0001",
+          "description": "供应项目：美发 美甲 美睫 按摩 \n\n联系方式：@XLLL0001\n\n谷歌地址：418 R.A.De Mel Mawatha,colombo 中航科技楼一楼",
+          "icon": ""
+        },
+        {
+          "id": "site-1783191095661",
+          "name": "3AM HAIR SON",
+          "url": "https://t.me/Kelunpo3AM888",
+          "description": "联系方式：@kelunpo3AM\n\n\n电话：705288888\n\n谷歌地址：3AM HAIR SALON",
+          "icon": ""
+        },
+        {
+          "id": "site-1783191130248",
+          "name": "素美皇家美甲美睫皮肤管理",
+          "url": "https://t.me/wen5250",
+          "description": "供应项目：美甲，美睫 ，皮肤管理（痘痘肌调理，去斑调理，刷酸等），按摩，采耳等\n\n联系方式：✈️：@wen5250\n                 微信：Vip_zw15888\n                 WA:+94 773237308\n\n谷歌地址：3AM  HAIR  SALON(科伦坡店）",
+          "icon": ""
+        },
+        {
+          "id": "site-1783191159282",
+          "name": "CHEN橙美甲美睫皮肤管理",
+          "url": "https://t.me/CC991224",
+          "description": "转账先打视频确认 CHEN橙美甲美睫工作室 预约电话776842637微信号CC991224x 别问有没有休息上下班只要美甲美睫随叫随到🫡",
           "icon": ""
         }
       ]
@@ -386,10 +407,32 @@ export const mockData = {
       ]
     },
     {
+      "id": "office",
+      "name": "手机电脑数码",
+      "icon": "💻",
+      "order": 14,
+      "sites": [
+        {
+          "id": "notion",
+          "name": "哈普森手机/电脑/监控",
+          "url": "https://t.me/jimmychijitui",
+          "description": "供应项目：监控/网络布线/门禁/桌面监控/手机/电脑/一体机/笔记本/办公设备\n\n联系方式：@jimmychijitui\n\n谷歌地址：全城送货",
+          "icon": ""
+        },
+        {
+          "id": "site-1783191305568",
+          "name": "Thundermac Pvt Ltd 苹果铲批推荐",
+          "url": "https://www.thundermac.com/",
+          "description": "谷歌地图搜。 Thundermac Pvt Ltd\n0778167474\nhttps://maps.app.goo.gl/6LqkmMMT6avHh2MM6",
+          "icon": ""
+        }
+      ]
+    },
+    {
       "id": "category-1783118560884",
       "icon": "⚽",
       "name": "2026世界杯指定平台",
-      "order": 14,
+      "order": 15,
       "sites": [
         {
           "id": "site-1783118616613",
@@ -397,42 +440,6 @@ export const mockData = {
           "url": "https://m888.im",
           "description": "皇家马德里官方赞助商 注册送100 首存复存追加送",
           "icon": "https://ibb.co/DPwd3rLc"
-        }
-      ]
-    },
-    {
-      "id": "category-1783190997647",
-      "icon": "👥",
-      "name": "美容美发",
-      "order": 0,
-      "sites": [
-        {
-          "id": "site-1783191027950",
-          "name": "1019沙龙美发",
-          "url": "https://t.me/XLLL0001",
-          "description": "供应项目：美发 美甲 美睫 按摩 \n\n联系方式：@XLLL0001\n\n谷歌地址：418 R.A.De Mel Mawatha,colombo 中航科技楼一楼",
-          "icon": ""
-        },
-        {
-          "id": "site-1783191095661",
-          "name": "3AM HAIR SON",
-          "url": "https://t.me/Kelunpo3AM888",
-          "description": "联系方式：@kelunpo3AM\n\n\n电话：705288888\n\n谷歌地址：3AM HAIR SALON",
-          "icon": ""
-        },
-        {
-          "id": "site-1783191130248",
-          "name": "素美皇家美甲美睫皮肤管理",
-          "url": "https://t.me/wen5250",
-          "description": "供应项目：美甲，美睫 ，皮肤管理（痘痘肌调理，去斑调理，刷酸等），按摩，采耳等\n\n联系方式：✈️：@wen5250\n                 微信：Vip_zw15888\n                 WA:+94 773237308\n\n谷歌地址：3AM  HAIR  SALON(科伦坡店）",
-          "icon": ""
-        },
-        {
-          "id": "site-1783191159282",
-          "name": "CHEN橙美甲美睫皮肤管理",
-          "url": "https://t.me/CC991224",
-          "description": "转账先打视频确认 CHEN橙美甲美睫工作室 预约电话776842637微信号CC991224x 别问有没有休息上下班只要美甲美睫随叫随到🫡",
-          "icon": ""
         }
       ]
     }
