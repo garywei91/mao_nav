@@ -26,6 +26,13 @@ export const mockData = {
           "url": "https://t.me/MK888bot?start=38674164_B",
           "description": "世界杯官方指定投注平台",
           "icon": ""
+        },
+        {
+          "id": "site-1783123615674",
+          "name": "兰卡68频道",
+          "url": "https://t.me/lanka68com",
+          "description": "",
+          "icon": "https://ibb.co/v92xqZ2"
         }
       ]
     },
@@ -591,7 +598,6 @@ export const mockData = {
       ]
     }
   ],
-  "title": "兰卡68生活导航",
-  "search": "google",
-  "_fileSha": "b6bbf76e700da1dcf41f63b15dd4897aa845249e"
+  "title": "猫猫导航🐱",
+  "search": "google"
 }
