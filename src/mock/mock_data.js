@@ -155,34 +155,6 @@ export const mockData = {
           "url": "https://t.me/huanhuan16800",
           "description": "供应项目：奶茶饮品\n\n联系方式：@huanhuan16800\n\n谷歌地址：BING CHUN BAMBALAPITIYA\n\n",
           "icon": ""
-        },
-        {
-          "id": "claude",
-          "name": "Claude",
-          "url": "https://claude.ai",
-          "description": "Anthropic AI助手",
-          "icon": "/sitelogo/claude.ai.ico"
-        },
-        {
-          "id": "midjourney",
-          "name": "Midjourney",
-          "url": "https://www.midjourney.com",
-          "description": "AI图像生成工具",
-          "icon": "/sitelogo/www.midjourney.com.ico"
-        },
-        {
-          "id": "copilot",
-          "name": "GitHub Copilot",
-          "url": "https://github.com/features/copilot",
-          "description": "AI代码助手",
-          "icon": "/sitelogo/github.com.ico"
-        },
-        {
-          "id": "cursor",
-          "name": "Cursor",
-          "url": "https://cursor.sh",
-          "description": "AI代码编辑器",
-          "icon": "/sitelogo/cursor.sh.ico"
         }
       ]
     },
@@ -606,6 +578,5 @@ export const mockData = {
     }
   ],
   "title": "lanka68.com",
-  "search": "google",
-  "_fileSha": "028408b771a506f49a1480f9b6d6bf0ec8b734a0"
+  "search": "google"
 }
