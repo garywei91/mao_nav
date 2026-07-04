@@ -438,30 +438,23 @@ export const mockData = {
       "sites": [
         {
           "id": "json-formatter",
-          "name": "JSON Formatter",
-          "url": "https://jsonformatter.org",
-          "description": "JSON格式化工具",
-          "icon": "/sitelogo/jsonformatter.org.ico"
+          "name": "兰卡余京集团｜一站式综合服务大品牌",
+          "url": "https://t.me/Q0715811111",
+          "description": "旗下全产业业务全覆盖：\n余京外卖｜余京签证｜余京装饰｜余京房产｜余京超市｜余京律师事务所\n\n✅签证代办：机场带关、工作签、BPO签证一手渠道快速出签\n✅工商资质：公司注册、餐厅营业许可代办\n✅生活配套：外卖入驻、房产租售物业、全屋装修、日常超市\n✅法律维权：专业华人律师团队，纠纷咨询处理\n\n联系方式：@Q0715811111\n谷歌定位：余京大厦",
+          "icon": ""
         },
         {
           "id": "regex101",
-          "name": "Regex101",
-          "url": "https://regex101.com",
-          "description": "正则表达式测试",
-          "icon": "/sitelogo/regex101.com.ico"
-        },
-        {
-          "id": "caniuse",
-          "name": "Can I Use",
-          "url": "https://caniuse.com",
-          "description": "浏览器兼容性查询",
-          "icon": "/sitelogo/caniuse.com.ico"
+          "name": "章鱼签证",
+          "url": "https://t.me/LYX_321",
+          "description": "本地一站式服务 靠谱省心 简单高效 柬埔寨记录正常办理 \n一手渠道 欢迎随时咨询！ \n欢迎代理合作\n\n✅ 斯里兰卡入境签证 / 旅游签 / 商务签 / 工作签/BPO签证/机场接送\n✅ 旅游签续签、商务签续签\n✅ 入境保关、出境保关\n\n付款方式：先办理再付款\n\n谷歌地址：London Stanfords College\n\n科伦坡最快效率\n \n联系方式 @LYX_321",
+          "icon": ""
         },
         {
           "id": "tinypng",
-          "name": "TinyPNG",
-          "url": "https://tinypng.com",
-          "description": "图片压缩工具",
+          "name": "屿光兰卡信息服务公司",
+          "url": "https://t.me/srilankasoso",
+          "description": "供应项目：工作签证、商务签证，保关，租房，商务翻译，特殊文件办理，bc线上营业执照，各类公司注册营业执照办理\n\n联系方式：@srilankasoso\n\n谷歌地址：屿光兰卡信息服务公司",
           "icon": "/sitelogo/tinypng.com.ico"
         }
       ]
