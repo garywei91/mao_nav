@@ -447,31 +447,10 @@ export const mockData = {
       "sites": [
         {
           "id": "notion",
-          "name": "Notion",
-          "url": "https://www.notion.so",
-          "description": "全能工作空间",
-          "icon": "/sitelogo/www.notion.so.ico"
-        },
-        {
-          "id": "slack",
-          "name": "Slack",
-          "url": "https://slack.com",
-          "description": "团队协作工具",
-          "icon": "/sitelogo/slack.com.ico"
-        },
-        {
-          "id": "trello",
-          "name": "Trello",
-          "url": "https://trello.com",
-          "description": "项目管理工具",
-          "icon": "/sitelogo/trello.com.ico"
-        },
-        {
-          "id": "feishu",
-          "name": "飞书",
-          "url": "https://www.feishu.cn",
-          "description": "企业协作平台",
-          "icon": "/sitelogo/www.feishu.cn.ico"
+          "name": "哈普森手机/电脑/监控",
+          "url": "https://t.me/jimmychijitui",
+          "description": "供应项目：监控/网络布线/门禁/桌面监控/手机/电脑/一体机/笔记本/办公设备\n\n联系方式：@jimmychijitui\n\n谷歌地址：全城送货",
+          "icon": ""
         }
       ]
     },
