@@ -177,7 +177,7 @@ export const mockData = {
     {
       "id": "category-1774510899116",
       "icon": "🏠",
-      "name": "租房",
+      "name": "租房 房产 珠宝",
       "order": 6,
       "sites": [
         {
@@ -192,6 +192,13 @@ export const mockData = {
           "name": "兰卡租房买房&SAGL 宝石实验室",
           "url": "https://t.me/a1413169989",
           "description": "供应项目：房产，宝石💎\n\n联系方式： @a1413169989\n\n谷歌地址：WVC5+28J, 294 Union Pl, Colombo 01000斯里兰卡：TRIZEN 公寓\n",
+          "icon": ""
+        },
+        {
+          "id": "site-1783190809385",
+          "name": "壹家房产中介公司",
+          "url": "https://t.me/Aimo0088",
+          "description": "供应项目：出租公寓楼，办公室，门店，别墅\n\n联系方式：768610584  飞机：@Aimo0088\n\n谷歌地址 : word place No.24",
           "icon": ""
         }
       ]
