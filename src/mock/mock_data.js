@@ -139,31 +139,17 @@ export const mockData = {
       "sites": [
         {
           "id": "figma",
-          "name": "Figma",
-          "url": "https://figma.com",
-          "description": "UI设计工具",
-          "icon": "/sitelogo/figma.com.ico"
+          "name": "🇱🇰空运快递-依雪",
+          "url": "https://t.me/LKwuliu",
+          "description": "🇱🇰 斯里兰卡空运｜小包可寄｜双清到门｜时效快｜操作简单，私聊报价\n\n📲 唯一客服联系方式： @LKyixue\n🤖 24小时快递助手 @YX168bot",
+          "icon": ""
         },
         {
           "id": "sketch",
-          "name": "Sketch",
-          "url": "https://www.sketch.com",
-          "description": "界面设计工具",
-          "icon": "/sitelogo/www.sketch.com.ico"
-        },
-        {
-          "id": "canva",
-          "name": "Canva",
-          "url": "https://www.canva.com",
-          "description": "在线设计平台",
-          "icon": "/sitelogo/www.canva.com.ico"
-        },
-        {
-          "id": "adobe-xd",
-          "name": "Adobe XD",
-          "url": "https://www.adobe.com/products/xd.html",
-          "description": "用户体验设计工具",
-          "icon": "/sitelogo/www.adobe.com.ico"
+          "name": "筋斗云速运",
+          "url": "https://t.me/dtgjwl",
+          "description": "商家名称：筋斗云速运\n\n供应项目：淘宝代买， 国际快递，\n普货，电子产品，烟酒槟榔，一切国内至蓝卡的运输 打造兰卡最快物流公司，承接公司合作\n\n联系方式： @dtgjwl\n\n谷歌地址：科伦坡",
+          "icon": ""
         }
       ]
     },
