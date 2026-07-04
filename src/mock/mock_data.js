@@ -412,6 +412,13 @@ export const mockData = {
           "url": "https://t.me/XLLL0001",
           "description": "供应项目：美发 美甲 美睫 按摩 \n\n联系方式：@XLLL0001\n\n谷歌地址：418 R.A.De Mel Mawatha,colombo 中航科技楼一楼",
           "icon": ""
+        },
+        {
+          "id": "site-1783191095661",
+          "name": "3AM HAIR SON",
+          "url": "https://t.me/Kelunpo3AM888",
+          "description": "联系方式：@kelunpo3AM\n\n\n电话：705288888\n\n谷歌地址：3AM HAIR SALON",
+          "icon": ""
         }
       ]
     }
