@@ -164,6 +164,13 @@ export const mockData = {
           "url": "https://t.me/wmwuliu",
           "description": "商家名称：快递\n\n供应项目：中国-兰卡  兰卡-中国  物流\n\n联系方式：@wmwuliu\n只有一个号 物流 宝石 换汇 烟 酒 泰国果冻（快递不到客户手里 不会提前要钱，换汇面对面交易） 小心骗子",
           "icon": ""
+        },
+        {
+          "id": "site-1783190592007",
+          "name": "咩咩（资金来往语音确认）",
+          "url": "https://t.me/Miumiemie888666",
+          "description": "商家名称：咩咩的店\n\n供应项目：口粮，换汇，快递，配送\n\n联系方式： @Miumiemie888666\n\n谷歌地址：线上接单",
+          "icon": ""
         }
       ]
     },
@@ -216,55 +223,6 @@ export const mockData = {
           "url": "https://www.binance.com",
           "description": "加密货币交易平台",
           "icon": "/sitelogo/www.binance.com.ico"
-        },
-        {
-          "id": "okx",
-          "name": "OKX",
-          "url": "https://www.okx.com",
-          "description": "数字资产交易服务平台",
-          "icon": "/sitelogo/www.okx.com.ico"
-        },
-        {
-          "id": "bitget",
-          "name": "Bitget",
-          "url": "https://www.bitget.com",
-          "description": "全球化数字资产交易服务商",
-          "icon": "/sitelogo/www.bitget.com.ico"
-        },
-        {
-          "id": "tradingview",
-          "name": "TradingView",
-          "url": "https://cn.tradingview.com",
-          "description": "专业金融图表和交易平台",
-          "icon": "/sitelogo/cn.tradingview.com.ico"
-        },
-        {
-          "id": "tonghuashun",
-          "name": "同花顺",
-          "url": "https://www.10jqka.com.cn",
-          "description": "专业股票软件及金融信息服务",
-          "icon": "/sitelogo/www.10jqka.com.cn.ico"
-        },
-        {
-          "id": "xueqiu",
-          "name": "雪球",
-          "url": "https://xueqiu.com",
-          "description": "聪明的投资者都在这里",
-          "icon": "/sitelogo/xueqiu.com.ico"
-        },
-        {
-          "id": "coinbase",
-          "name": "Coinbase",
-          "url": "https://www.coinbase.com",
-          "description": "美国合规加密货币交易平台",
-          "icon": "/sitelogo/www.coinbase.com.ico"
-        },
-        {
-          "id": "futu",
-          "name": "富途牛牛",
-          "url": "https://www.futunn.com",
-          "description": "港美股交易软件",
-          "icon": "/sitelogo/www.futunn.com.ico"
         }
       ]
     },
