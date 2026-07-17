@@ -494,6 +494,61 @@ export const mockData = {
       ]
     }
   ],
+  "articles": [
+    {
+      "id": "article-visa-reminder",
+      "title": "兰卡签证与入境提醒",
+      "category": "生活提醒",
+      "summary": "整理签证续签、入境材料、机场通关等常见问题，适合新来兰卡的朋友收藏。",
+      "content": "建议出行前确认护照有效期、签证状态、返程或续签安排。具体政策请以官方信息为准。",
+      "image": "",
+      "link": "",
+      "pinned": true,
+      "publishedAt": "2026-07-06"
+    },
+    {
+      "id": "article-safety",
+      "title": "本地交易安全提示",
+      "category": "安全",
+      "summary": "跟本地商家交易建议优先货到付款，涉及资金往来时务必视频或语音确认。",
+      "content": "平台只做信息整理，交易前请自行核实身份、地址、服务内容与付款方式。",
+      "image": "",
+      "link": "",
+      "pinned": false,
+      "publishedAt": "2026-07-06"
+    }
+  ],
+  "guides": [
+    {
+      "id": "guide-colombo-day",
+      "title": "科伦坡一日生活指南",
+      "category": "科伦坡",
+      "summary": "适合第一次到科伦坡的人：换汇、电话卡、超市、餐厅、打车和常用地址整理。",
+      "content": "建议先确认住宿位置，再按距离安排超市、餐厅和办事路线。",
+      "image": "",
+      "location": "Colombo",
+      "budget": "按个人行程",
+      "duration": "1天",
+      "mapUrl": "https://www.google.com/maps/search/?api=1&query=Colombo",
+      "contactUrl": "",
+      "pinned": true
+    }
+  ],
+  "jobs": [
+    {
+      "id": "job-submit",
+      "title": "商家招聘信息发布",
+      "company": "lanka68.com",
+      "category": "招聘发布",
+      "salary": "面议",
+      "location": "斯里兰卡",
+      "summary": "本地商家可发布招聘，适合客服、翻译、餐饮、司机、销售、兼职等岗位。",
+      "requirements": "请提供岗位、薪资、地点、签证要求、联系方式和有效期。",
+      "contactUrl": "https://t.me/kaiyunai",
+      "expiresAt": "",
+      "pinned": true
+    }
+  ],
   "title": "lanka68.com",
   "search": "google"
 }
