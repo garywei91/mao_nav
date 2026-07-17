@@ -66,6 +66,12 @@
                 <a :href="site.url" target="_blank" rel="noopener noreferrer" class="site-url">
                   {{ site.url }}
                 </a>
+                <div class="quick-links">
+                  <span v-if="site.contactUrl">联系</span>
+                  <span v-if="site.channelUrl">频道</span>
+                  <span v-if="site.uberUrl">Uber</span>
+                  <span v-if="site.mapUrl">地图</span>
+                </div>
                 <span class="site-category">
                   {{ getCategoryName(site.categoryId) }}
                 </span>
@@ -141,6 +147,48 @@
               placeholder="https://example.com"
               class="form-input"
             >
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>联系商家链接:</label>
+              <input
+                v-model="formData.contactUrl"
+                type="url"
+                placeholder="例如：https://t.me/username"
+                class="form-input"
+              >
+            </div>
+            <div class="form-group">
+              <label>查看频道链接:</label>
+              <input
+                v-model="formData.channelUrl"
+                type="url"
+                placeholder="例如：https://t.me/channel"
+                class="form-input"
+              >
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Uber一键打车链接:</label>
+              <input
+                v-model="formData.uberUrl"
+                type="url"
+                placeholder="不填则前台按地址自动生成"
+                class="form-input"
+              >
+            </div>
+            <div class="form-group">
+              <label>谷歌地图链接:</label>
+              <input
+                v-model="formData.mapUrl"
+                type="url"
+                placeholder="不填则前台按地址自动生成"
+                class="form-input"
+              >
+            </div>
           </div>
 
           <div class="form-group">
@@ -228,6 +276,10 @@ const iconError = ref(false)
 const formData = ref({
   name: '',
   url: '',
+  contactUrl: '',
+  channelUrl: '',
+  uberUrl: '',
+  mapUrl: '',
   description: '',
   icon: '',
   categoryId: ''
@@ -328,6 +380,10 @@ const editSite = (site) => {
   formData.value = {
     name: site.name,
     url: site.url,
+    contactUrl: site.contactUrl || '',
+    channelUrl: site.channelUrl || '',
+    uberUrl: site.uberUrl || '',
+    mapUrl: site.mapUrl || '',
     description: site.description,
     icon: site.icon,
     categoryId: site.categoryId
@@ -363,6 +419,10 @@ const updateSitesOrder = (newSites) => {
     id: site.id,
     name: site.name,
     url: site.url,
+    contactUrl: site.contactUrl || '',
+    channelUrl: site.channelUrl || '',
+    uberUrl: site.uberUrl || '',
+    mapUrl: site.mapUrl || '',
     description: site.description,
     icon: site.icon
   }))
@@ -758,6 +818,10 @@ const saveSite = () => {
       id: editingSite.value.id,
       name: formData.value.name,
       url: formData.value.url,
+      contactUrl: formData.value.contactUrl,
+      channelUrl: formData.value.channelUrl,
+      uberUrl: formData.value.uberUrl,
+      mapUrl: formData.value.mapUrl,
       description: formData.value.description,
       icon: formData.value.icon
     }
@@ -782,6 +846,10 @@ const saveSite = () => {
       id: `site-${Date.now()}`,
       name: formData.value.name,
       url: formData.value.url,
+      contactUrl: formData.value.contactUrl,
+      channelUrl: formData.value.channelUrl,
+      uberUrl: formData.value.uberUrl,
+      mapUrl: formData.value.mapUrl,
       description: formData.value.description,
       icon: formData.value.icon
     }
@@ -800,6 +868,10 @@ const openAddModal = () => {
   formData.value = {
     name: '',
     url: '',
+    contactUrl: '',
+    channelUrl: '',
+    uberUrl: '',
+    mapUrl: '',
     description: '',
     icon: '',
     categoryId: defaultCategoryId
@@ -814,6 +886,10 @@ const closeModal = () => {
   formData.value = {
     name: '',
     url: '',
+    contactUrl: '',
+    channelUrl: '',
+    uberUrl: '',
+    mapUrl: '',
     description: '',
     icon: '',
     categoryId: ''
@@ -1129,6 +1205,25 @@ watch(selectedCategoryId, () => {
 
 .site-url:hover {
   text-decoration: underline;
+}
+
+.quick-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 6px;
+}
+
+.quick-links span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #eef6f1;
+  color: #2d6a4f;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 .site-category {
