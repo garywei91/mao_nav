@@ -39,9 +39,9 @@
       <!-- 分类导航 -->
       <nav class="category-nav">
         <h2 class="nav-title">分类导航</h2>
-                <ul class="category-list">
+        <ul class="category-list">
           <li
-            v-for="category in categories"
+            v-for="category in visibleCategories"
             :key="category.id"
             class="category-item"
             @click="scrollToCategory(category.id)"
@@ -52,21 +52,6 @@
         </ul>
       </nav>
 
-      <!-- 左侧边栏底部信息 -->
-      <div class="sidebar-footer">
-        <a
-          href="https://github.com/maodeyu180/mao_nav"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="github-link"
-          title="查看源代码"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-          </svg>
-          <span>开源不易，Star一下吧！⭐</span>
-        </a>
-      </div>
     </aside>
 
     <!-- 右侧主内容区 -->
@@ -74,22 +59,14 @@
                   <!-- 顶部搜索栏 -->
       <header class="search-header">
         <div class="search-container">
-          <div class="search-engine-selector">
-            <img :src="searchEngines[selectedEngine].icon" :alt="selectedEngine" class="engine-logo" />
-            <select v-model="selectedEngine" class="engine-select">
-              <option value="google">Google</option>
-              <option value="baidu">Baidu</option>
-              <option value="bing">Bing</option>
-              <option value="duckduckgo">DuckDuckGo</option>
-            </select>
-          </div>
+          <span class="search-icon">⌕</span>
           <input
             type="text"
             v-model="searchQuery"
-            :placeholder="searchEngines[selectedEngine].placeholder"
+            placeholder="搜索商家、服务、联系方式或地址"
             class="search-input"
-            @keyup.enter="handleSearch"
           />
+          <button v-if="searchQuery" class="clear-search-btn" @click="clearSearch" title="清空搜索">×</button>
         </div>
 
         <!-- 主题切换按钮 -->
@@ -112,15 +89,12 @@
         <!-- 移动端分类菜单 -->
         <div class="mobile-menu" :class="{ active: showMobileMenu }">
           <div class="mobile-menu-header">
-            <div class="header-left">
-              <h3>分类导航</h3>
-              <img :src="githubLogo" alt="GitHub" class="header-github-icon" @click="openGitHub" />
-            </div>
+            <h3>分类导航</h3>
             <button class="close-btn" @click="closeMobileMenu">×</button>
           </div>
-                    <ul class="mobile-category-list">
+          <ul class="mobile-category-list">
             <li
-              v-for="category in categories"
+              v-for="category in visibleCategories"
               :key="category.id"
               class="mobile-category-item"
               @click="scrollToCategoryMobile(category.id)"
@@ -149,10 +123,20 @@
           <button @click="fetchCategories" class="retry-btn">重试</button>
         </div>
 
-                <!-- 分类内容 -->
+        <!-- 分类内容 -->
         <div v-else class="categories-container">
+          <div v-if="searchQuery" class="search-summary">
+            找到 {{ visibleSiteCount }} 个相关商家
+          </div>
+
+          <div v-if="visibleCategories.length === 0" class="empty-search">
+            <h2>没有找到相关商家</h2>
+            <p>换个关键词试试，比如“超市”“签证”“@用户名”或“Colombo”。</p>
+            <button class="retry-btn" @click="clearSearch">清空搜索</button>
+          </div>
+
           <section
-            v-for="category in categories"
+            v-for="category in visibleCategories"
             :key="category.id"
             class="category-section"
             :id="`category-${category.id}`"
@@ -163,51 +147,153 @@
             </h2>
 
             <div class="sites-grid">
-              <a
+              <article
                 v-for="site in category.sites"
                 :key="site.id"
-                :href="site.url"
-                target="_blank"
-                rel="noopener noreferrer"
                 class="site-card"
               >
-                <div class="site-icon">
-                  <img :src="site.icon" :alt="site.name" @error="handleImageError" />
+                <div class="site-media" :class="{ 'has-image': site.icon }">
+                  <img v-if="site.icon" :src="site.icon" :alt="site.name" @error="handleImageError" />
+                  <div class="site-placeholder">
+                    <span class="placeholder-icon">{{ category.icon }}</span>
+                    <strong>{{ getSiteInitial(site.name) }}</strong>
+                  </div>
                 </div>
+
                 <div class="site-info">
+                  <div class="site-badges">
+                    <span class="category-pill">{{ category.name }}</span>
+                    <span v-if="getSiteStatus(site)" class="status-pill">{{ getSiteStatus(site) }}</span>
+                  </div>
                   <h3 class="site-name">{{ site.name }}</h3>
-                  <p class="site-description">{{ site.description }}</p>
+                  <p class="site-description">{{ formatDescription(site) }}</p>
+
+                  <div class="site-meta">
+                    <span v-if="getSiteContact(site)" class="meta-item">✈ {{ getSiteContact(site) }}</span>
+                    <span v-if="getSitePhone(site)" class="meta-item">☎ {{ getSitePhone(site) }}</span>
+                    <span v-if="getSiteHours(site)" class="meta-item">🕒 {{ getSiteHours(site) }}</span>
+                    <span v-if="getSiteAddress(site)" class="meta-item address">📍 {{ getSiteAddress(site) }}</span>
+                  </div>
+
+                  <div class="site-actions">
+                    <a
+                      :href="getContactUrl(site)"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="site-action-btn contact"
+                    >
+                      联系商家
+                    </a>
+                    <a
+                      :href="getChannelUrl(site)"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="site-action-btn channel"
+                    >
+                      查看频道
+                    </a>
+                    <a
+                      :href="getUberUrl(site)"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="site-action-btn uber"
+                    >
+                      Uber打车
+                    </a>
+                    <a
+                      :href="getMapUrl(site)"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="site-action-btn map"
+                    >
+                      谷歌地图
+                    </a>
+                  </div>
                 </div>
-              </a>
+              </article>
+            </div>
+          </section>
+
+          <section v-if="featuredArticles.length" class="portal-section" id="articles">
+            <h2 class="portal-title">📰 兰卡资讯</h2>
+            <div class="portal-grid">
+              <article v-for="item in featuredArticles" :key="item.id" class="portal-card">
+                <div class="portal-cover" :class="{ 'has-image': item.image }">
+                  <img v-if="item.image" :src="item.image" :alt="item.title" @error="handleImageError" />
+                  <span v-else>📰</span>
+                </div>
+                <div class="portal-body">
+                  <div class="portal-meta">
+                    <span>{{ item.category || '资讯' }}</span>
+                    <span v-if="item.pinned">置顶</span>
+                    <span v-if="item.publishedAt">{{ item.publishedAt }}</span>
+                  </div>
+                  <h3>{{ item.title }}</h3>
+                  <p>{{ item.summary }}</p>
+                  <a v-if="item.link" :href="item.link" target="_blank" rel="noopener noreferrer" class="portal-link">查看详情</a>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section v-if="featuredGuides.length" class="portal-section" id="guides">
+            <h2 class="portal-title">🧭 旅游指南</h2>
+            <div class="portal-grid">
+              <article v-for="item in featuredGuides" :key="item.id" class="portal-card">
+                <div class="portal-cover guide" :class="{ 'has-image': item.image }">
+                  <img v-if="item.image" :src="item.image" :alt="item.title" @error="handleImageError" />
+                  <span v-else>🧭</span>
+                </div>
+                <div class="portal-body">
+                  <div class="portal-meta">
+                    <span>{{ item.category || item.location || '路线' }}</span>
+                    <span v-if="item.duration">{{ item.duration }}</span>
+                    <span v-if="item.budget">{{ item.budget }}</span>
+                  </div>
+                  <h3>{{ item.title }}</h3>
+                  <p>{{ item.summary }}</p>
+                  <div class="portal-actions">
+                    <a v-if="item.mapUrl" :href="item.mapUrl" target="_blank" rel="noopener noreferrer" class="portal-link">地图路线</a>
+                    <a v-if="item.contactUrl" :href="item.contactUrl" target="_blank" rel="noopener noreferrer" class="portal-link secondary">咨询</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section v-if="featuredJobs.length" class="portal-section" id="jobs">
+            <h2 class="portal-title">💼 招聘求职</h2>
+            <div class="portal-grid">
+              <article v-for="item in featuredJobs" :key="item.id" class="portal-card job">
+                <div class="portal-body">
+                  <div class="portal-meta">
+                    <span>{{ item.category || '招聘' }}</span>
+                    <span v-if="item.expiresAt">有效期 {{ item.expiresAt }}</span>
+                  </div>
+                  <h3>{{ item.title }}</h3>
+                  <p>{{ item.summary || item.requirements }}</p>
+                  <div class="job-meta">
+                    <span v-if="item.company">{{ item.company }}</span>
+                    <span v-if="item.location">{{ item.location }}</span>
+                    <span v-if="item.salary">{{ item.salary }}</span>
+                  </div>
+                  <a v-if="item.contactUrl" :href="item.contactUrl" target="_blank" rel="noopener noreferrer" class="portal-link">联系招聘方</a>
+                </div>
+              </article>
             </div>
           </section>
 
           <!-- 页面底部信息 -->
-          <footer class="page-footer" hidden="true">
+          <footer class="page-footer">
             <div class="footer-content">
               <div class="footer-info">
-                <h3>{{ title || '猫猫导航' }}</h3>
-                <p>一个简洁、美观的导航网站，收录优质网站资源</p>
-              </div>
-
-              <div class="footer-links">
-                <a
-                  href="https://github.com/maodeyu180/mao_nav"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="footer-link"
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                  </svg>
-                  开源项目
-                </a>
+                <h3>{{ title || 'lanka68.com' }}</h3>
+                <p>斯里兰卡本地商家联系方式整理</p>
               </div>
             </div>
 
             <div class="footer-bottom">
-              <p>&copy; {{ new Date().getFullYear() }} 猫猫导航 - 由 <a href="https://github.com/maodeyu180" target="_blank" rel="noopener noreferrer">maodeyu180</a> 用 ❤️ 制作</p>
-              <p class="footer-tech">基于 Vue.js 构建 | <a href="https://github.com/maodeyu180/mao_nav" target="_blank" rel="noopener noreferrer">查看源代码</a></p>
+              <p>&copy; {{ new Date().getFullYear() }} {{ title || 'lanka68.com' }}</p>
             </div>
           </footer>
         </div>
@@ -217,26 +303,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useNavigation } from '@/apis/useNavigation.js'
 import { useThemeStore } from '@/stores/counter.js'
-// 导入搜索引擎logo图片
-import googleLogo from '@/assets/goolge.png'
-import baiduLogo from '@/assets/baidu.png'
-import bingLogo from '@/assets/bing.png'
-import duckLogo from '@/assets/duck.png'
-// 导入GitHub logo
-import githubLogo from '@/assets/github.png'
 
 // 使用导航API
-const { categories, title, defaultSearchEngine, loading, error, fetchCategories } = useNavigation()
+const { categories, articles, guides, jobs, title, loading, error, fetchCategories } = useNavigation()
 
 // 使用主题store
 const themeStore = useThemeStore()
 
 // 响应式数据
 const searchQuery = ref('') // 搜索查询
-const selectedEngine = ref('bing') // 选中的搜索引擎，初始值会在组件挂载后更新
 const showMobileMenu = ref(false) // 移动端菜单显示状态
 
 // 锁定功能相关
@@ -245,30 +323,6 @@ const isUnlocked = ref(false) // 是否已解锁
 const unlockPassword = ref('') // 解锁密码输入
 const unlocking = ref(false) // 解锁中状态
 const unlockError = ref('') // 解锁错误信息
-
-// 搜索引擎配置
-const searchEngines = {
-  google: {
-    url: 'https://www.google.com/search?q=',
-    icon: googleLogo,
-    placeholder: 'Google (点logo切换搜索引擎'
-  },
-  baidu: {
-    url: 'https://www.baidu.com/s?wd=',
-    icon: baiduLogo,
-    placeholder: '百度一下(点logo切换搜索引擎'
-  },
-  bing: {
-    url: 'https://www.bing.com/search?q=',
-    icon: bingLogo,
-    placeholder: 'Bing (点logo切换搜索引擎)'
-  },
-  duckduckgo: {
-    url: 'https://duckduckgo.com/?q=',
-    icon: duckLogo,
-    placeholder: 'DuckDuckGo (点logo切换搜索引擎)'
-  }
-}
 
 // 自定义固定时间滚动函数
 const smoothScrollTo = (container, targetTop, duration = 600) => {
@@ -302,26 +356,10 @@ const scrollToCategory = (categoryId) => {
   const container = document.querySelector('.content-area')
 
   if (element && container) {
-    // 检查是否为移动端
-    const isMobile = window.innerWidth <= 768
-
-    let targetTop = 0
-
-    if (isMobile) {
-      // 移动端：在 content-area 容器内滚动
-      const elementOffsetTop = element.offsetTop
-      const searchHeaderHeight = 80 // 固定高度，因为搜索框是fixed定位
-      targetTop = elementOffsetTop - searchHeaderHeight
-    } else {
-      // 桌面端：在容器内滚动
-      const searchHeader = document.querySelector('.search-header')
-      const elementOffsetTop = element.offsetTop
-      const searchHeaderHeight = searchHeader ? searchHeader.offsetHeight + 20 : 100
-      targetTop = elementOffsetTop - searchHeaderHeight
-    }
+    const elementOffsetTop = element.offsetTop
 
     // 使用固定时间滚动（600毫秒）
-    smoothScrollTo(container, Math.max(0, targetTop), 600)
+    smoothScrollTo(container, Math.max(0, elementOffsetTop), 600)
   }
 }
 
@@ -369,20 +407,149 @@ const handleUnlock = async () => {
   }
 }
 
-// 处理搜索
-const handleSearch = () => {
-  if (!searchQuery.value.trim()) return
+const normalizeText = (value = '') => String(value)
+  .replace(/\u00a0/g, ' ')
+  .replace(/[ \t]+/g, ' ')
+  .trim()
 
-  const engine = searchEngines[selectedEngine.value]
-  const url = engine.url + encodeURIComponent(searchQuery.value)
-  window.open(url, '_blank')
+const getDescriptionLines = (site) => String(site.description || '')
+  .split(/\n+/)
+  .map((line) => normalizeText(line))
+  .filter(Boolean)
+
+const shortenText = (value, maxLength = 42) => {
+  const text = normalizeText(value)
+  return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text
+}
+
+const getSiteInitial = (name = '') => {
+  const cleanName = normalizeText(name).replace(/[^\p{L}\p{N}]/gu, '')
+  return cleanName.slice(0, 1).toUpperCase() || 'L'
+}
+
+const getSiteContact = (site) => {
+  const text = `${site.description || ''} ${site.url || ''}`
+  const matches = text.match(/@[A-Za-z0-9_]{4,}/g) || []
+  if (matches.length) return matches[0]
+
+  const telegramMatch = String(site.url || '').match(/t\.me\/([A-Za-z0-9_]{4,})/i)
+  return telegramMatch ? `@${telegramMatch[1]}` : ''
+}
+
+const getSitePhone = (site) => {
+  const text = normalizeText(site.description || '')
+  const matches = text.match(/(?:\+94\s*)?(?:0\s*)?\d[\d\s-]{6,}\d/g) || []
+  const phone = matches.find((match) => match.replace(/\D/g, '').length >= 8)
+  return phone ? normalizeText(phone) : ''
+}
+
+const getLineValue = (site, patterns) => {
+  const line = getDescriptionLines(site).find((item) => patterns.some((pattern) => pattern.test(item)))
+  if (!line) return ''
+  const [, value = ''] = line.split(/[:：]/)
+  return shortenText(value || line.replace(/^(谷歌地址|谷歌定位|地址|定位|营业时间|状态)\s*/i, ''), 46)
+}
+
+const getFullLineValue = (site, patterns) => {
+  const line = getDescriptionLines(site).find((item) => patterns.some((pattern) => pattern.test(item)))
+  if (!line) return ''
+  const [, value = ''] = line.split(/[:：]/)
+  return normalizeText(value || line.replace(/^(谷歌地址|谷歌定位|地址|定位|营业时间|状态)\s*/i, ''))
+}
+
+const getSiteAddress = (site) => getLineValue(site, [/谷歌地址/i, /谷歌定位/i, /^地址/i, /定位/i])
+
+const getFullSiteAddress = (site) => getFullLineValue(site, [/谷歌地址/i, /谷歌定位/i, /^地址/i, /定位/i])
+
+const getSiteHours = (site) => getLineValue(site, [/营业时间/i])
+
+const getSiteStatus = (site) => getLineValue(site, [/状态/i])
+
+const getLocationQuery = (site) => getFullSiteAddress(site) || normalizeText(site.name || '')
+
+const getContactUrl = (site) => site.contactUrl || site.url || '#'
+
+const getChannelUrl = (site) => site.channelUrl || site.url || getContactUrl(site)
+
+const getMapUrl = (site) => {
+  if (site.mapUrl) return site.mapUrl
+  const query = getLocationQuery(site)
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`
+}
+
+const getUberUrl = (site) => {
+  if (site.uberUrl) return site.uberUrl
+  const query = getLocationQuery(site)
+  return `https://m.uber.com/ul/?action=setPickup&dropoff[formatted_address]=${encodeURIComponent(query)}`
+}
+
+const formatDescription = (site) => {
+  const cleanedLines = getDescriptionLines(site).filter((line) => {
+    if (/^(联系方式|联系飞机|谷歌地址|谷歌定位|地址|定位|电话|telegram|飞机|微信|WA|营业时间|状态|商家入驻|兰卡生活)\s*[:：]?/i.test(line)) return false
+    if (/^@[\w_]+$/.test(line)) return false
+    if (/^https?:\/\//i.test(line)) return false
+    return true
+  })
+
+  return normalizeText(cleanedLines.join(' · ')) || '暂无详细介绍，建议直接联系商家确认服务内容。'
+}
+
+const getSearchText = (category, site) => [
+  category.name,
+  category.icon,
+  site.name,
+  site.description,
+  site.url,
+  site.contactUrl,
+  site.channelUrl,
+  site.uberUrl,
+  site.mapUrl,
+  getSiteContact(site),
+  getSitePhone(site),
+  getSiteAddress(site),
+  getSiteHours(site),
+].join(' ').toLowerCase()
+
+const visibleCategories = computed(() => {
+  const query = normalizeText(searchQuery.value).toLowerCase()
+  if (!query) return categories.value
+
+  return categories.value
+    .map((category) => {
+      const categorySites = category.sites || []
+      const categoryMatches = `${category.name} ${category.icon}`.toLowerCase().includes(query)
+      const sites = categoryMatches
+        ? categorySites
+        : categorySites.filter((site) => getSearchText(category, site).includes(query))
+
+      return {
+        ...category,
+        sites,
+      }
+    })
+    .filter((category) => category.sites.length > 0)
+})
+
+const visibleSiteCount = computed(() => visibleCategories.value.reduce((total, category) => total + category.sites.length, 0))
+
+const sortPinnedFirst = (items) => [...(items.value || [])].sort((a, b) => Number(Boolean(b.pinned)) - Number(Boolean(a.pinned)))
+
+const featuredArticles = computed(() => sortPinnedFirst(articles).slice(0, 6))
+
+const featuredGuides = computed(() => sortPinnedFirst(guides).slice(0, 6))
+
+const featuredJobs = computed(() => sortPinnedFirst(jobs).slice(0, 6))
+
+const clearSearch = () => {
+  searchQuery.value = ''
 }
 
 // 处理图片加载错误
 const handleImageError = (event) => {
-  // 设置默认的 favicon.ico 作为 fallback 图片
-  event.target.src = '/favicon.ico'
-  event.target.onerror = null // 防止无限循环
+  event.target.closest('.site-media')?.classList.add('image-error')
+  event.target.closest('.portal-cover')?.classList.add('image-error')
+  event.target.removeAttribute('src')
+  event.target.onerror = null
 }
 
 // 移动端菜单控制
@@ -412,17 +579,10 @@ const scrollToCategoryMobile = (categoryId) => {
   }, 200)
 }
 
-// 打开GitHub项目页面
-const openGitHub = () => {
-  window.open('https://github.com/maodeyu180/mao_nav', '_blank')
-}
-
 // 组件挂载时获取数据
 onMounted(async () => {
   checkLockStatus() // 检查锁定状态
   await fetchCategories()
-  // 设置默认搜索引擎
-  selectedEngine.value = defaultSearchEngine.value
 })
 
 // 组件卸载时清理样式
@@ -538,13 +698,13 @@ onUnmounted(() => {
 .nav-home {
   display: flex;
   min-height: 100vh;
-  background-color: #f5f7fa;
+  background: #f7f4ef;
 }
 
 /* 左侧边栏样式 */
 .sidebar {
   width: 280px;
-  background-color: #2c3e50;
+  background: #243b36;
   color: white;
   padding: 0;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
@@ -578,7 +738,7 @@ onUnmounted(() => {
 
 .category-nav {
   padding: 20px 0;
-  height: calc(100vh - 180px); /* 为底部留出空间 */
+  height: calc(100vh - 82px);
   overflow-y: auto;
 }
 
@@ -608,7 +768,7 @@ onUnmounted(() => {
 
 .category-item:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  box-shadow: inset 4px 0 0 #3498db;
+  box-shadow: inset 4px 0 0 #f0b35a;
 }
 
 .category-icon {
@@ -623,39 +783,6 @@ onUnmounted(() => {
   font-weight: 500;
 }
 
-/* 左侧边栏底部 */
-.sidebar-footer {
-  padding: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  margin-top: auto;
-}
-
-.github-link {
-  display: flex;
-  align-items: center;
-  color: #bdc3c7;
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  font-size: 14px;
-}
-
-.github-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  transform: translateY(-1px);
-}
-
-.github-link svg {
-  margin-right: 8px;
-  transition: transform 0.3s ease;
-}
-
-.github-link:hover svg {
-  transform: scale(1.1);
-}
-
 /* 右侧主内容区样式 */
 .main-content {
   flex: 1;
@@ -666,7 +793,7 @@ onUnmounted(() => {
 }
 
 .search-header {
-  background: white;
+  background: rgba(255, 255, 255, 0.92);
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   position: sticky;
@@ -679,6 +806,7 @@ onUnmounted(() => {
 
 .search-container {
   display: flex;
+  align-items: center;
   max-width: 600px;
   margin: 0 auto;
   gap: 0;
@@ -686,6 +814,7 @@ onUnmounted(() => {
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   flex: 1;
+  background: white;
 }
 
 @media (max-width: 768px) {
@@ -695,39 +824,15 @@ onUnmounted(() => {
   }
 }
 
-.search-engine-selector {
-  position: relative;
-  display: flex;
-  align-items: center;
-  background: #f8f9fa;
-  border-right: 1px solid #e9ecef;
-  transition: background-color 0.2s ease;
-}
-
-.search-engine-selector:hover {
-  background: #e9ecef;
-}
-
-.engine-logo {
-  width: 24px;
-  height: 24px;
-  margin: 8px;
-  object-fit: contain;
-  pointer-events: none;
-  border-radius: 4px;
-}
-
-.engine-select {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: transparent;
+.search-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: #31514a;
+  font-size: 22px;
+  border-right: 1px solid #eee4d6;
 }
 
 .search-input {
@@ -737,10 +842,29 @@ onUnmounted(() => {
   font-size: 16px;
   outline: none;
   background: white;
+  min-width: 0;
 }
 
 .search-input::placeholder {
   color: #95a5a6;
+}
+
+.clear-search-btn {
+  width: 38px;
+  height: 38px;
+  margin-right: 4px;
+  border: none;
+  background: transparent;
+  color: #687872;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.clear-search-btn:hover {
+  background: #f1ece4;
+  color: #243b36;
 }
 
 /* 移动端菜单按钮 */
@@ -801,20 +925,6 @@ onUnmounted(() => {
   margin: 0;
   font-size: 18px;
   font-weight: 600;
-}
-
-.header-github-icon {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  opacity: 0.8;
-}
-
-.header-github-icon:hover {
-  opacity: 1;
-  transform: scale(1.1);
 }
 
 .close-btn {
@@ -896,8 +1006,8 @@ onUnmounted(() => {
 /* 内容区域样式 */
 .content-area {
   flex: 1;
-  padding: 30px;
-  padding-bottom: 400px;
+  padding: 0 30px 90px;
+  padding-bottom: 90px;
   overflow-y: auto;
 }
 
@@ -935,7 +1045,7 @@ onUnmounted(() => {
 }
 
 .categories-container {
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
 }
 
@@ -944,12 +1054,18 @@ onUnmounted(() => {
 }
 
 .category-title {
-  font-size: 32px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  font-size: 30px;
   font-weight: 600;
-  margin-bottom: 25px;
-  color: #2c3e50;
+  margin: 0 0 25px 0;
+  padding: 14px 0;
+  color: #243b36;
   display: flex;
   align-items: center;
+  background: #f7f4ef;
+  border-bottom: 1px solid rgba(228, 221, 209, 0.9);
 }
 
 .category-title .category-icon {
@@ -964,118 +1080,412 @@ onUnmounted(() => {
 
 .sites-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 18px;
+}
+
+.search-summary {
+  margin: 0 0 20px;
+  padding: 10px 12px;
+  border: 1px solid #e4ddd1;
+  border-radius: 8px;
+  background: #fff;
+  color: #5f6f69;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.empty-search {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  color: #5f6f69;
+}
+
+.empty-search h2 {
+  margin: 0;
+  color: #243b36;
+  font-size: 24px;
+}
+
+.empty-search p {
+  margin: 0 0 8px;
+  font-size: 14px;
 }
 
 .site-card {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   background: white;
-  border-radius: 12px;
-  padding: 20px;
-  text-decoration: none;
+  border-radius: 8px;
+  padding: 0;
   color: inherit;
-  transition: all 0.3s ease;
-  border: 1px solid #e9ecef;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  border: 1px solid #e4ddd1;
   position: relative;
   overflow: hidden;
+  min-height: 360px;
 }
 
 .site-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(155, 89, 182, 0.1));
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  display: none;
 }
 
 .site-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #d9c6a6;
+  box-shadow: 0 14px 36px rgba(61, 48, 33, 0.12);
 }
 
-.site-card:hover::before {
-  opacity: 1;
-}
-
-.site-icon {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  flex-shrink: 0;
-  margin-right: 16px;
-  border-radius: 8px;
+.site-media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, #e7f0e5 0%, #f8eddc 100%);
+  border-bottom: 1px solid #eee4d6;
   overflow: hidden;
-  background: #f8f9fa;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 1;
 }
 
-.site-icon img {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
+.site-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.site-media.has-image:not(.image-error) .site-placeholder {
+  opacity: 0;
+}
+
+.site-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #31514a;
+}
+
+.placeholder-icon {
+  font-size: 34px;
+}
+
+.site-placeholder strong {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  color: #243b36;
+  font-size: 20px;
 }
 
 .site-info {
+  display: flex;
+  flex-direction: column;
   flex: 1;
+  width: 100%;
   min-width: 0;
-  overflow: hidden;
+  padding: 16px;
   position: relative;
-  z-index: 1;
+}
+
+.site-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.category-pill,
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.category-pill {
+  background: #edf5f1;
+  color: #31514a;
+}
+
+.status-pill {
+  background: #fff4de;
+  color: #8a5b12;
 }
 
 .site-name {
   font-size: 18px;
-  font-weight: 600;
-  margin: 0 0 5px 0;
-  color: #2c3e50;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: #243b36;
+  line-height: 1.35;
 }
 
 .site-description {
   font-size: 14px;
-  color: #7f8c8d;
+  color: #5f6f69;
   margin: 0;
-  line-height: 1.4;
-  white-space: nowrap;
+  line-height: 1.6;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.site-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.meta-item {
+  max-width: 100%;
+  padding: 7px 9px;
+  border-radius: 6px;
+  background: #f7f4ef;
+  color: #43534f;
+  font-size: 12px;
+  line-height: 1.25;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta-item.address {
+  flex-basis: 100%;
+}
+
+.site-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.site-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 9px 10px;
+  border-radius: 6px;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.2s ease, transform 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.site-action-btn:hover {
+  transform: translateY(-1px);
+}
+
+.site-action-btn.contact {
+  background: #d26f3d;
+}
+
+.site-action-btn.contact:hover {
+  background: #b95d31;
+}
+
+.site-action-btn.channel {
+  background: #31514a;
+}
+
+.site-action-btn.channel:hover {
+  background: #243b36;
+}
+
+.site-action-btn.uber {
+  background: #111827;
+}
+
+.site-action-btn.uber:hover {
+  background: #000;
+}
+
+.site-action-btn.map {
+  background: #2f7d5f;
+}
+
+.site-action-btn.map:hover {
+  background: #236148;
+}
+
+.portal-section {
+  margin: 54px 0 0;
+}
+
+.portal-title {
+  margin: 0 0 18px;
+  color: #243b36;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.portal-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #e4ddd1;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.portal-card.job {
+  min-height: 220px;
+}
+
+.portal-cover {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  overflow: hidden;
+  background: linear-gradient(135deg, #e7f0e5 0%, #f8eddc 100%);
+  color: #31514a;
+  font-size: 36px;
+}
+
+.portal-cover.guide {
+  background: linear-gradient(135deg, #e8f0fb 0%, #ecf6ed 100%);
+}
+
+.portal-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portal-cover.image-error {
+  background: linear-gradient(135deg, #e7f0e5 0%, #f8eddc 100%);
+}
+
+.portal-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 16px;
+}
+
+.portal-meta,
+.job-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.portal-meta span,
+.job-meta span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #edf5f1;
+  color: #31514a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.job-meta span {
+  background: #f7f4ef;
+  color: #43534f;
+}
+
+.portal-body h3 {
+  margin: 0 0 8px;
+  color: #243b36;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.portal-body p {
+  margin: 0 0 14px;
+  color: #5f6f69;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.portal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.portal-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-height: 36px;
+  margin-top: auto;
+  padding: 8px 13px;
+  border-radius: 6px;
+  background: #31514a;
+  color: white;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.portal-link.secondary {
+  background: #d26f3d;
 }
 
 /* 页面底部 */
 .page-footer {
   margin-top: 60px;
-  padding: 40px 0;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: 12px;
-  border-top: 3px solid #3498db;
+  padding: 28px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e4ddd1;
 }
 
 .footer-content {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
   gap: 30px;
 }
 
 .footer-info h3 {
-  color: #2c3e50;
+  color: #243b36;
   font-size: 20px;
   font-weight: 600;
   margin: 0 0 8px 0;
 }
 
 .footer-info p {
-  color: #7f8c8d;
+  color: #6b756f;
   font-size: 14px;
   margin: 0;
   line-height: 1.5;
@@ -1117,13 +1527,13 @@ onUnmounted(() => {
 }
 
 .footer-bottom {
-  border-top: 1px solid #e9ecef;
-  padding-top: 20px;
+  border-top: 1px solid #eee4d6;
+  padding-top: 14px;
   text-align: center;
 }
 
 .footer-bottom p {
-  color: #7f8c8d;
+  color: #7c827e;
   font-size: 13px;
   margin: 5px 0;
   line-height: 1.4;
@@ -1171,10 +1581,8 @@ onUnmounted(() => {
 
   .search-header {
     padding: 15px 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: relative;
+    flex-shrink: 0;
     z-index: 500;
     background: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -1182,9 +1590,8 @@ onUnmounted(() => {
 
   .content-area {
     flex: 1;
-    padding: 20px 15px;
-    padding-top: 100px; /* 为固定的搜索框留出空间 */
-    padding-bottom: 300px; /* 增加底部padding确保内容可以完全滚动 */
+    padding: 0 15px 90px;
+    padding-bottom: 90px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch; /* iOS平滑滚动 */
   }
@@ -1195,32 +1602,43 @@ onUnmounted(() => {
   }
 
   .sites-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .portal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .portal-section {
+    margin-top: 40px;
+  }
+
+  .portal-title {
+    font-size: 22px;
   }
 
   .site-card {
-    padding: 12px;
-    flex-direction: column;
-    text-align: center;
+    min-height: auto;
   }
 
-  .site-card .site-icon {
-    margin-right: 0;
-    margin-bottom: 8px;
+  .site-media {
+    aspect-ratio: 2 / 1;
   }
 
   .site-card .site-name {
-    font-size: 15px;
+    font-size: 17px;
   }
 
   .site-card .site-description {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .category-title {
+    top: 0;
     font-size: 24px;
     margin-bottom: 20px;
+    padding: 12px 0;
   }
 
   .category-title .category-icon {
@@ -1279,11 +1697,11 @@ onUnmounted(() => {
 
 /* 暗色模式样式 */
 .dark .nav-home {
-  background-color: #1a1a1a;
+  background: #171d1b;
 }
 
 .dark .sidebar {
-  background-color: #1e293b;
+  background: #172824;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -1310,15 +1728,12 @@ onUnmounted(() => {
 
 .dark .search-container {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.dark .search-engine-selector {
   background: #374151;
-  border-right: 1px solid #4b5563;
 }
 
-.dark .search-engine-selector:hover {
-  background: #4b5563;
+.dark .search-icon {
+  color: #bfe0d1;
+  border-right: 1px solid #4b5563;
 }
 
 .dark .search-input {
@@ -1331,23 +1746,22 @@ onUnmounted(() => {
   color: #9ca3af;
 }
 
-.dark .engine-select {
-  background: #374151;
-  color: #e2e8f0;
+.dark .clear-search-btn {
+  color: #cbd5e1;
 }
 
-.dark .engine-select option {
-  background: #374151;
-  color: #e2e8f0;
+.dark .clear-search-btn:hover {
+  background: #4b5563;
+  color: #f8fafc;
 }
 
 .dark .content-area {
-  background: #1a1a1a;
+  background: #171d1b;
 }
 
 .dark .site-card {
-  background: #374151;
-  border: 1px solid #4b5563;
+  background: #22302c;
+  border: 1px solid #34433f;
   color: #e2e8f0;
 }
 
@@ -1355,24 +1769,137 @@ onUnmounted(() => {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-.dark .site-card::before {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
-}
-
 .dark .site-name {
-  color: #e2e8f0;
+  color: #f1f5f3;
 }
 
 .dark .site-description {
-  color: #9ca3af;
+  color: #b8c5bf;
 }
 
-.dark .site-icon {
-  background: #4b5563;
+.dark .site-media {
+  background: linear-gradient(135deg, #263d37 0%, #4d3d2a 100%);
+  border-bottom: 1px solid #34433f;
+}
+
+.dark .site-placeholder {
+  color: #c9d8d1;
+}
+
+.dark .site-placeholder strong {
+  background: rgba(255, 255, 255, 0.12);
+  color: #f1f5f3;
+}
+
+.dark .category-pill {
+  background: rgba(130, 177, 154, 0.16);
+  color: #bfe0d1;
+}
+
+.dark .status-pill {
+  background: rgba(240, 179, 90, 0.16);
+  color: #f2c783;
+}
+
+.dark .meta-item {
+  background: #1b2623;
+  color: #c5d1cc;
+}
+
+.dark .site-action-btn.contact {
+  background: #c76739;
+}
+
+.dark .site-action-btn.contact:hover {
+  background: #df7a49;
+}
+
+.dark .site-action-btn.channel {
+  background: #3f645b;
+}
+
+.dark .site-action-btn.channel:hover {
+  background: #4f7d71;
+}
+
+.dark .site-action-btn.uber {
+  background: #030712;
+}
+
+.dark .site-action-btn.uber:hover {
+  background: #111827;
+}
+
+.dark .site-action-btn.map {
+  background: #2f7d5f;
+}
+
+.dark .site-action-btn.map:hover {
+  background: #3d936f;
 }
 
 .dark .category-title {
-  color: #e2e8f0;
+  color: #f1f5f3;
+  background: #171d1b;
+  border-bottom: 1px solid #34433f;
+}
+
+.dark .search-summary {
+  background: #22302c;
+  border-color: #34433f;
+  color: #c5d1cc;
+}
+
+.dark .empty-search {
+  color: #c5d1cc;
+}
+
+.dark .empty-search h2 {
+  color: #f1f5f3;
+}
+
+.dark .portal-title {
+  color: #f1f5f3;
+}
+
+.dark .portal-card {
+  background: #22302c;
+  border-color: #34433f;
+}
+
+.dark .portal-cover {
+  background: linear-gradient(135deg, #263d37 0%, #4d3d2a 100%);
+  color: #c9d8d1;
+}
+
+.dark .portal-cover.guide {
+  background: linear-gradient(135deg, #20364a 0%, #263d37 100%);
+}
+
+.dark .portal-body h3 {
+  color: #f1f5f3;
+}
+
+.dark .portal-body p {
+  color: #b8c5bf;
+}
+
+.dark .portal-meta span {
+  background: rgba(130, 177, 154, 0.16);
+  color: #bfe0d1;
+}
+
+.dark .job-meta span {
+  background: #1b2623;
+  color: #c5d1cc;
+}
+
+.dark .portal-link {
+  background: #3f645b;
+}
+
+.dark .portal-link.secondary {
+  background: #c76739;
 }
 
 .dark .mobile-menu {
@@ -1393,8 +1920,8 @@ onUnmounted(() => {
 }
 
 .dark .page-footer {
-  background: linear-gradient(135deg, #1e293b 0%, #374151 100%);
-  border-top: 3px solid #3b82f6;
+  background: #22302c;
+  border: 1px solid #34433f;
 }
 
 .dark .footer-info h3 {
@@ -1403,18 +1930,6 @@ onUnmounted(() => {
 
 .dark .footer-info p {
   color: #9ca3af;
-}
-
-.dark .footer-link {
-  background: #374151;
-  border: 1px solid #4b5563;
-  color: #3b82f6;
-}
-
-.dark .footer-link:hover {
-  background: #3b82f6;
-  color: white;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
 .dark .footer-bottom p {

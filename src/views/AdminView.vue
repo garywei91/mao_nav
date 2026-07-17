@@ -69,6 +69,27 @@
           </button>
           <button
             class="tab-btn"
+            :class="{ active: activeTab === 'articles' }"
+            @click="activeTab = 'articles'"
+          >
+            📰 资讯管理
+          </button>
+          <button
+            class="tab-btn"
+            :class="{ active: activeTab === 'guides' }"
+            @click="activeTab = 'guides'"
+          >
+            🧭 旅游指南
+          </button>
+          <button
+            class="tab-btn"
+            :class="{ active: activeTab === 'jobs' }"
+            @click="activeTab = 'jobs'"
+          >
+            💼 招聘求职
+          </button>
+          <button
+            class="tab-btn"
             :class="{ active: activeTab === 'settings' }"
             @click="activeTab = 'settings'"
           >
@@ -93,6 +114,39 @@
             :categories="categories"
             :initialSelectedCategoryId="selectedCategoryId"
             @update="handleCategoriesUpdate"
+            @save="saveToGitHub"
+            :loading="saving"
+          />
+        </div>
+
+        <!-- 资讯管理 -->
+        <div v-if="activeTab === 'articles'" class="tab-content">
+          <ContentManager
+            type="articles"
+            :items="articles"
+            @update="handleArticlesUpdate"
+            @save="saveToGitHub"
+            :loading="saving"
+          />
+        </div>
+
+        <!-- 旅游指南 -->
+        <div v-if="activeTab === 'guides'" class="tab-content">
+          <ContentManager
+            type="guides"
+            :items="guides"
+            @update="handleGuidesUpdate"
+            @save="saveToGitHub"
+            :loading="saving"
+          />
+        </div>
+
+        <!-- 招聘求职 -->
+        <div v-if="activeTab === 'jobs'" class="tab-content">
+          <ContentManager
+            type="jobs"
+            :items="jobs"
+            @update="handleJobsUpdate"
             @save="saveToGitHub"
             :loading="saving"
           />
@@ -123,6 +177,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import CategoryManager from '../components/admin/CategoryManager.vue'
 import SiteManager from '../components/admin/SiteManager.vue'
+import ContentManager from '../components/admin/ContentManager.vue'
 import SystemSettings from '../components/admin/SystemSettings.vue'
 import CustomDialog from '../components/admin/CustomDialog.vue'
 import { useGitHubAPI, setAuthToken, clearAuthToken } from '../apis/useGitHubAPI.js'
@@ -140,6 +195,9 @@ const saving = ref(false)
 // 管理界面状态
 const activeTab = ref('categories')
 const categories = ref([])
+const articles = ref([])
+const guides = ref([])
+const jobs = ref([])
 const navTitle = ref('猫猫导航') // 保存网站标题
 const selectedCategoryId = ref('') // 用于站点管理的选中分类
 
@@ -255,6 +313,9 @@ const loadCategories = async () => {
     // 直接加载本地数据，避免GitHub API调用
     const { mockData } = await import('../mock/mock_data.js')
     categories.value = mockData.categories || []
+    articles.value = mockData.articles || []
+    guides.value = mockData.guides || []
+    jobs.value = mockData.jobs || []
     navTitle.value = mockData.title || '猫猫导航'
     console.log('✅ 本地数据加载成功，分类数量:', categories.value.length)
   } catch (error) {
@@ -272,6 +333,18 @@ const loadCategories = async () => {
 // 处理分类更新
 const handleCategoriesUpdate = (newCategories) => {
   categories.value = newCategories
+}
+
+const handleArticlesUpdate = (newArticles) => {
+  articles.value = newArticles
+}
+
+const handleGuidesUpdate = (newGuides) => {
+  guides.value = newGuides
+}
+
+const handleJobsUpdate = (newJobs) => {
+  jobs.value = newJobs
 }
 
 // 切换到站点管理并选中对应分类
@@ -309,6 +382,9 @@ const skipLoading = async () => {
   try {
     const { mockData } = await import('../mock/mock_data.js')
     categories.value = mockData.categories || []
+    articles.value = mockData.articles || []
+    guides.value = mockData.guides || []
+    jobs.value = mockData.jobs || []
     navTitle.value = mockData.title || '猫猫导航'
     console.log('跳过加载后，使用本地数据:', categories.value.length)
   } catch (error) {
@@ -349,6 +425,9 @@ const saveToGitHub = async () => {
     // 保存完整的数据结构，保留 search 字段
     await saveCategoriesToGitHub({
       categories: categories.value,
+      articles: articles.value,
+      guides: guides.value,
+      jobs: jobs.value,
       title: navTitle.value,
       search: currentData.search || 'bing'  // 保留搜索引擎设置
     })
@@ -412,6 +491,9 @@ onMounted(() => {
     // Load local data for initial display
     import('../mock/mock_data.js').then(({ mockData }) => {
       categories.value = mockData.categories || []
+      articles.value = mockData.articles || []
+      guides.value = mockData.guides || []
+      jobs.value = mockData.jobs || []
       navTitle.value = mockData.title || '猫猫导航'
     }).catch(() => {
       categories.value = []
@@ -650,6 +732,8 @@ onMounted(() => {
 
 .admin-tabs {
   display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
   background: white;
   border-radius: 8px;
   padding: 5px;
@@ -658,7 +742,7 @@ onMounted(() => {
 }
 
 .tab-btn {
-  flex: 1;
+  flex: 1 1 150px;
   padding: 12px 20px;
   background: none;
   border: none;
