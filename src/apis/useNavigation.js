@@ -3,6 +3,9 @@ import { mockData } from '../mock/mock_data.js'
 
 export function useNavigation() {
   const categories = ref([])
+  const articles = ref([])
+  const guides = ref([])
+  const jobs = ref([])
   const title = ref('')
   const defaultSearchEngine = ref('bing')
   const loading = ref(false)
@@ -20,6 +23,9 @@ export function useNavigation() {
 
       // 默认使用本地mock数据
       categories.value = mockData.categories
+      articles.value = mockData.articles || []
+      guides.value = mockData.guides || []
+      jobs.value = mockData.jobs || []
       title.value = mockData.title
 
       // 设置默认搜索引擎，如果未指定或不存在则使用bing
@@ -39,6 +45,9 @@ export function useNavigation() {
       console.error('Error fetching categories:', err)
       // 兜底：始终返回 mock 数据
       categories.value = mockData.categories
+      articles.value = mockData.articles || []
+      guides.value = mockData.guides || []
+      jobs.value = mockData.jobs || []
       title.value = mockData.title
 
       // 设置默认搜索引擎
@@ -57,6 +66,9 @@ export function useNavigation() {
 
   return {
     categories,
+    articles,
+    guides,
+    jobs,
     title,
     defaultSearchEngine,
     loading,
