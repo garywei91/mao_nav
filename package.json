@@ -1,26 +1,19 @@
 {
-  "name": "mao_nav",
+  "name": "lanka68-directory",
   "version": "2.0.0",
-  "description": "🐱 一个简洁美观的个人导航网站，支持分类管理和自定义收藏夹",
-  "private": false,
+  "description": "lanka68.com 斯里兰卡本地商家联系方式目录",
+  "private": true,
   "type": "module",
   "author": "Your Name <your.email@example.com>",
   "license": "MIT",
-  "homepage": "https://github.com/your-username/mao_nav#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/your-username/mao_nav.git"
-  },
-  "bugs": {
-    "url": "https://github.com/your-username/mao_nav/issues"
-  },
+  "homepage": "https://lanka68.com",
   "keywords": [
     "navigation",
     "bookmarks",
     "vue3",
     "vite",
     "cloudflare-pages",
-    "personal-website",
+    "local-directory",
     "导航网站",
     "书签管理"
   ],
