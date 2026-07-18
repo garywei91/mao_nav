@@ -236,6 +236,20 @@
             </div>
           </section>
 
+          <section class="ad-section" aria-label="广告位">
+            <div class="ad-section-header">
+              <h2>推荐展示</h2>
+              <span>广告合作</span>
+            </div>
+            <div class="ad-grid">
+              <a v-for="slot in adSlots" :key="slot.id" :href="slot.href" class="ad-slot" target="_blank" rel="noopener noreferrer">
+                <span class="ad-label">广告位</span>
+                <strong>{{ slot.title }}</strong>
+                <small>{{ slot.subtitle }}</small>
+              </a>
+            </div>
+          </section>
+
           <section v-if="featuredArticles.length" class="portal-section" id="articles">
             <h2 class="portal-title">📰 兰卡资讯</h2>
             <div class="portal-grid">
@@ -349,6 +363,12 @@ const themeStore = useThemeStore()
 const searchQuery = ref('') // 搜索查询
 const showMobileMenu = ref(false) // 移动端菜单显示状态
 const gallerySite = ref(null)
+const adSlots = Array.from({ length: 6 }, (_, index) => ({
+  id: index + 1,
+  title: '广告位招租',
+  subtitle: '品牌 / 商家展示',
+  href: '#'
+}))
 
 const getSiteImages = (site) => Array.isArray(site.images)
   ? site.images.filter(Boolean)
@@ -1407,6 +1427,14 @@ onUnmounted(() => {
 
 .site-action-btn.gallery { background: #a56829; }
 .site-action-btn.gallery:hover { background: #824d1d; }
+.ad-section { margin: 44px 0 10px; padding: 18px; border: 1px solid #eadfc9; border-radius: 16px; background: rgba(255, 253, 247, .72); }
+.ad-section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; color: #124b47; }
+.ad-section-header h2 { margin: 0; font-size: 19px; }
+.ad-section-header span { color: #a56829; font-size: 12px; font-weight: 700; }
+.ad-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ad-slot { display: flex; min-height: 92px; flex-direction: column; justify-content: center; gap: 4px; padding: 12px; border: 1px dashed #d5aa57; border-radius: 12px; color: #355c54; text-decoration: none; background: linear-gradient(135deg, #fffaf0, #f1f7f1); transition: transform .2s ease, box-shadow .2s ease; }
+.ad-slot:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20, 75, 71, .12); }
+.ad-slot strong { color: #124b47; font-size: 15px; }.ad-slot small { color: #7a7063; font-size: 12px; }.ad-label { color: #b2772e; font-size: 11px; font-weight: 700; }
 .gallery-overlay { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; padding: 20px; background: rgba(8, 31, 28, .72); }
 .gallery-modal { width: min(920px, 100%); max-height: 88vh; overflow: auto; border-radius: 18px; background: #fffdf8; box-shadow: 0 28px 80px rgba(0, 0, 0, .35); }
 .gallery-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; color: #124b47; border-bottom: 1px solid #eadfc9; }
@@ -1692,6 +1720,8 @@ onUnmounted(() => {
   .portal-grid {
     grid-template-columns: 1fr;
   }
+
+  .ad-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
   .portal-section {
     margin-top: 40px;
