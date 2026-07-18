@@ -213,6 +213,17 @@
                 🔍 自动获取
               </button>
             </div>
+            <div class="icon-upload-row">
+              <input
+                ref="iconFileInput"
+                type="file"
+                accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,image/x-icon"
+                class="icon-file-input"
+                @change="uploadCustomIcon"
+              >
+              <span class="icon-upload-hint">可直接上传 JPG、PNG、WebP、GIF、SVG 或 ICO（最大 2MB）</span>
+            </div>
+            <div v-if="iconUploading" class="icon-upload-status">图标上传中，请稍候…</div>
             <div class="icon-preview" v-if="formData.icon">
               <img :src="getIconDisplayUrl(formData.icon)" alt="图标预览" @error="iconError = true">
             </div>
@@ -271,6 +282,8 @@ const selectedCategoryId = ref('')
 const showAddModal = ref(false)
 const editingSite = ref(null)
 const iconError = ref(false)
+const iconFileInput = ref(null)
+const iconUploading = ref(false)
 
 // 表单数据
 const formData = ref({
@@ -373,6 +386,50 @@ const getIconDisplayUrl = (iconPath) => {
   return iconPath
 }
 
+const uploadCustomIcon = async (event) => {
+  const file = event.target.files?.[0]
+  if (!file) return
+
+  const allowedTypes = [
+    'image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml', 'image/x-icon', 'image/vnd.microsoft.icon'
+  ]
+  if (!allowedTypes.includes(file.type)) {
+    alert('请选择 JPG、PNG、WebP、GIF、SVG 或 ICO 图标。')
+    event.target.value = ''
+    return
+  }
+  if (file.size > 2 * 1024 * 1024) {
+    alert('图标不能超过 2MB。')
+    event.target.value = ''
+    return
+  }
+
+  const extension = file.name.split('.').pop()?.toLowerCase() || 'png'
+  const safeExtension = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'ico'].includes(extension) ? extension : 'png'
+  const baseName = (formData.value.name || 'merchant-icon')
+    .toLowerCase()
+    .replace(/[^a-z0-9\u4e00-\u9fff]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'merchant-icon'
+  const fileName = `${baseName}-${Date.now()}.${safeExtension}`
+  const localPath = `/sitelogo/${fileName}`
+
+  iconUploading.value = true
+  try {
+    await uploadBinaryFile(`public${localPath}`, await file.arrayBuffer(), `chore: 上传商家图标 ${fileName}`)
+    const oldPreview = iconPreviews.value.get(localPath)
+    if (oldPreview) URL.revokeObjectURL(oldPreview)
+    iconPreviews.value.set(localPath, URL.createObjectURL(file))
+    formData.value.icon = localPath
+    iconError.value = false
+  } catch (error) {
+    console.error('商家图标上传失败:', error)
+    alert(`图标上传失败：${error.message || '请稍后重试'}`)
+  } finally {
+    iconUploading.value = false
+    event.target.value = ''
+  }
+}
+
 // 编辑站点
 const editSite = (site) => {
   editingSite.value = site
@@ -389,6 +446,8 @@ const editSite = (site) => {
     categoryId: site.categoryId
   }
   iconError.value = false
+  iconUploading.value = false
+  if (iconFileInput.value) iconFileInput.value.value = ''
 }
 
 // 删除站点
@@ -1377,6 +1436,30 @@ watch(selectedCategoryId, () => {
 .icon-input-group {
   display: flex;
   gap: 10px;
+}
+
+.icon-upload-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.icon-file-input {
+  max-width: 100%;
+  font-size: 13px;
+}
+
+.icon-upload-hint,
+.icon-upload-status {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.icon-upload-status {
+  margin-top: 8px;
+  color: #2563eb;
 }
 
 .auto-icon-btn {
