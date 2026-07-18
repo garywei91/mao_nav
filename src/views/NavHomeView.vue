@@ -32,8 +32,8 @@
     <aside class="sidebar">
       <!-- Logo区域 -->
       <div class="logo-section">
-        <img src="/logo.png" alt="logo" class="logo" />
-        <h1 class="site-title">{{ title || '猫猫导航' }}</h1>
+        <img src="/logo-lanka68.png" alt="兰卡68 Logo" class="logo" />
+        <h1 class="site-title">{{ title || '兰卡68' }}</h1>
       </div>
 
       <!-- 分类导航 -->
@@ -287,8 +287,9 @@
           <footer class="page-footer">
             <div class="footer-content">
               <div class="footer-info">
-                <h3>{{ title || 'lanka68.com' }}</h3>
-                <p>斯里兰卡本地商家联系方式整理</p>
+                <h2>{{ title || '兰卡68' }}</h2>
+                <p>斯里兰卡华人生活服务与本地商家信息导航</p>
+                <small>信息由商家或公开渠道提供；联系、交易及服务体验请自行核实。</small>
               </div>
             </div>
 
