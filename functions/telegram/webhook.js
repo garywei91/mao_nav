@@ -141,7 +141,29 @@ async function sendSearchResults(env, chatId, query) {
   }
 }
 
-export async function onRequestGet() {
+export async function onRequestGet({ request, env }) {
+  const url = new URL(request.url)
+  // Temporary activation hook used only while binding the Telegram webhook.
+  // It is removed immediately after the binding succeeds.
+  if (url.searchParams.get('activate') === '1') {
+    if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_WEBHOOK_SECRET) {
+      return json({ ok: false, error: 'Telegram bot secrets are not configured.' }, 503)
+    }
+
+    const response = await fetch(`${TELEGRAM_API}/bot${env.TELEGRAM_BOT_TOKEN}/setWebhook`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        url: `${url.origin}/telegram/webhook`,
+        secret_token: env.TELEGRAM_WEBHOOK_SECRET,
+        allowed_updates: ['message', 'callback_query'],
+        drop_pending_updates: true,
+      }),
+    })
+    const result = await response.json().catch(() => ({ ok: false }))
+    return json({ ok: Boolean(result.ok) }, result.ok ? 200 : 502)
+  }
+
   return json({ ok: true, service: 'lanka68-telegram-bot' })
 }
 
