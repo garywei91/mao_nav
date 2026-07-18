@@ -192,6 +192,12 @@
                   </div>
 
                   <div class="site-actions">
+                    <button
+                      v-if="getSiteImages(site).length"
+                      type="button"
+                      class="site-action-btn gallery"
+                      @click="openGallery(site)"
+                    >查看图片</button>
                     <a
                       :href="getContactUrl(site)"
                       target="_blank"
@@ -316,6 +322,15 @@
         </div>
       </div>
     </main>
+
+    <div v-if="gallerySite" class="gallery-overlay" @click.self="closeGallery">
+      <div class="gallery-modal">
+        <div class="gallery-header"><strong>{{ gallerySite.name }} · 图片/菜单</strong><button type="button" @click="closeGallery">×</button></div>
+        <div class="gallery-grid">
+          <img v-for="image in getSiteImages(gallerySite)" :key="image" :src="image" :alt="`${gallerySite.name} 图片`" @error="handleImageError">
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -333,6 +348,13 @@ const themeStore = useThemeStore()
 // 响应式数据
 const searchQuery = ref('') // 搜索查询
 const showMobileMenu = ref(false) // 移动端菜单显示状态
+const gallerySite = ref(null)
+
+const getSiteImages = (site) => Array.isArray(site.images)
+  ? site.images.filter(Boolean)
+  : (site.image ? [site.image] : [])
+const openGallery = (site) => { gallerySite.value = site }
+const closeGallery = () => { gallerySite.value = null }
 
 // 锁定功能相关
 const isLocked = ref(false) // 是否启用锁定功能
@@ -1382,6 +1404,15 @@ onUnmounted(() => {
 .site-action-btn.map:hover {
   background: #236148;
 }
+
+.site-action-btn.gallery { background: #a56829; }
+.site-action-btn.gallery:hover { background: #824d1d; }
+.gallery-overlay { position: fixed; inset: 0; z-index: 1200; display: grid; place-items: center; padding: 20px; background: rgba(8, 31, 28, .72); }
+.gallery-modal { width: min(920px, 100%); max-height: 88vh; overflow: auto; border-radius: 18px; background: #fffdf8; box-shadow: 0 28px 80px rgba(0, 0, 0, .35); }
+.gallery-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; color: #124b47; border-bottom: 1px solid #eadfc9; }
+.gallery-header button { border: 0; background: none; color: #124b47; cursor: pointer; font-size: 28px; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; padding: 16px; }
+.gallery-grid img { width: 100%; border-radius: 10px; object-fit: cover; }
 
 .portal-section {
   margin: 54px 0 0;
