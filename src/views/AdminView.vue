@@ -181,6 +181,7 @@ import ContentManager from '../components/admin/ContentManager.vue'
 import SystemSettings from '../components/admin/SystemSettings.vue'
 import CustomDialog from '../components/admin/CustomDialog.vue'
 import { useGitHubAPI, setAuthToken, clearAuthToken } from '../apis/useGitHubAPI.js'
+import { withLankaAssistantCatalog } from '../mock/lankaAssistantCatalog.js'
 
 const router = useRouter()
 const { saveCategoriesToGitHub, loadCategoriesFromGitHub } = useGitHubAPI()
@@ -312,7 +313,7 @@ const loadCategories = async () => {
   try {
     // 直接加载本地数据，避免GitHub API调用
     const { mockData } = await import('../mock/mock_data.js')
-    categories.value = mockData.categories || []
+    categories.value = withLankaAssistantCatalog(mockData).categories || []
     articles.value = mockData.articles || []
     guides.value = mockData.guides || []
     jobs.value = mockData.jobs || []
@@ -381,7 +382,7 @@ const skipLoading = async () => {
   // 尝试加载本地数据
   try {
     const { mockData } = await import('../mock/mock_data.js')
-    categories.value = mockData.categories || []
+    categories.value = withLankaAssistantCatalog(mockData).categories || []
     articles.value = mockData.articles || []
     guides.value = mockData.guides || []
     jobs.value = mockData.jobs || []
@@ -490,7 +491,7 @@ onMounted(() => {
 
     // Load local data for initial display
     import('../mock/mock_data.js').then(({ mockData }) => {
-      categories.value = mockData.categories || []
+      categories.value = withLankaAssistantCatalog(mockData).categories || []
       articles.value = mockData.articles || []
       guides.value = mockData.guides || []
       jobs.value = mockData.jobs || []
