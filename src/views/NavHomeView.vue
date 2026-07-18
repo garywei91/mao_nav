@@ -38,7 +38,7 @@
 
       <!-- 分类导航 -->
       <nav class="category-nav">
-        <h2 class="nav-title">分类导航</h2>
+        <h2 class="nav-title">生活服务</h2>
         <ul class="category-list">
           <li
             v-for="category in visibleCategories"
@@ -48,6 +48,19 @@
           >
             <span class="category-icon">{{ category.icon }}</span>
             <span class="category-name">{{ category.name }}</span>
+          </li>
+        </ul>
+
+        <h2 class="nav-title content-nav-title">实用内容</h2>
+        <ul class="category-list content-category-list">
+          <li v-if="featuredArticles.length" class="category-item content-category-item" @click="scrollToSection('articles')">
+            <span class="category-icon">📰</span><span class="category-name">兰卡资讯</span>
+          </li>
+          <li v-if="featuredGuides.length" class="category-item content-category-item" @click="scrollToSection('guides')">
+            <span class="category-icon">🧭</span><span class="category-name">旅游指南</span>
+          </li>
+          <li v-if="featuredJobs.length" class="category-item content-category-item" @click="scrollToSection('jobs')">
+            <span class="category-icon">💼</span><span class="category-name">招聘求职</span>
           </li>
         </ul>
       </nav>
@@ -89,7 +102,7 @@
         <!-- 移动端分类菜单 -->
         <div class="mobile-menu" :class="{ active: showMobileMenu }">
           <div class="mobile-menu-header">
-            <h3>分类导航</h3>
+            <h3>兰卡68 导航</h3>
             <button class="close-btn" @click="closeMobileMenu">×</button>
           </div>
           <ul class="mobile-category-list">
@@ -102,6 +115,9 @@
               <span class="category-icon">{{ category.icon }}</span>
               <span class="category-name">{{ category.name }}</span>
             </li>
+            <li v-if="featuredArticles.length" class="mobile-category-item" @click="scrollToSectionMobile('articles')"><span class="category-icon">📰</span><span class="category-name">兰卡资讯</span></li>
+            <li v-if="featuredGuides.length" class="mobile-category-item" @click="scrollToSectionMobile('guides')"><span class="category-icon">🧭</span><span class="category-name">旅游指南</span></li>
+            <li v-if="featuredJobs.length" class="mobile-category-item" @click="scrollToSectionMobile('jobs')"><span class="category-icon">💼</span><span class="category-name">招聘求职</span></li>
           </ul>
         </div>
 
@@ -364,6 +380,12 @@ const scrollToCategory = (categoryId) => {
   }
 }
 
+const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId)
+  const container = document.querySelector('.content-area')
+  if (element && container) smoothScrollTo(container, Math.max(0, element.offsetTop), 600)
+}
+
 // 检查是否启用锁定功能
 const checkLockStatus = () => {
   const openLock = import.meta.env.VITE_OPEN_LOCK
@@ -580,6 +602,11 @@ const scrollToCategoryMobile = (categoryId) => {
   }, 200)
 }
 
+const scrollToSectionMobile = (sectionId) => {
+  closeMobileMenu()
+  setTimeout(() => scrollToSection(sectionId), 200)
+}
+
 // 组件挂载时获取数据
 onMounted(async () => {
   checkLockStatus() // 检查锁定状态
@@ -699,13 +726,15 @@ onUnmounted(() => {
 .nav-home {
   display: flex;
   min-height: 100vh;
-  background: #f7f4ef;
+  background:
+    radial-gradient(circle at 93% 8%, rgba(240, 179, 90, 0.18), transparent 27rem),
+    linear-gradient(135deg, #fbf6eb 0%, #f7f4ef 48%, #edf4ef 100%);
 }
 
 /* 左侧边栏样式 */
 .sidebar {
   width: 280px;
-  background: #243b36;
+  background: linear-gradient(165deg, #0d4c48 0%, #173a35 55%, #254d43 100%);
   color: white;
   padding: 0;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
@@ -720,14 +749,17 @@ onUnmounted(() => {
   padding-left: 20px;
   padding-top: 13px;
   padding-bottom: 13px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(240, 179, 90, 0.34);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.06), rgba(240, 179, 90, 0.12));
 }
 
 .logo {
-  width: 55px;
-  height: 55px;
-  border-radius: 12px;
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
   margin-right: 15px;
+  border: 1px solid rgba(240, 179, 90, 0.72);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .site-title {
@@ -735,6 +767,7 @@ onUnmounted(() => {
   font-weight: 600;
   margin: 0;
   color: white;
+  letter-spacing: 0.04em;
 }
 
 .category-nav {
@@ -747,9 +780,23 @@ onUnmounted(() => {
   font-size: 16px;
   font-weight: 600;
   margin: 0 20px 15px;
-  color: #bdc3c7;
+  color: #f2c777;
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+.content-nav-title {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.content-category-list {
+  padding-bottom: 12px;
+}
+
+.content-category-item {
+  color: #fff6df;
 }
 
 .category-list {
@@ -768,7 +815,7 @@ onUnmounted(() => {
 }
 
 .category-item:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(90deg, rgba(240, 179, 90, 0.19), rgba(255, 255, 255, 0.04));
   box-shadow: inset 4px 0 0 #f0b35a;
 }
 
@@ -794,7 +841,7 @@ onUnmounted(() => {
 }
 
 .search-header {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 253, 247, 0.9);
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   position: sticky;
@@ -803,6 +850,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 15px;
+  border-bottom: 1px solid rgba(212, 175, 110, 0.24);
+  backdrop-filter: blur(12px);
 }
 
 .search-container {
@@ -811,11 +860,12 @@ onUnmounted(() => {
   max-width: 600px;
   margin: 0 auto;
   gap: 0;
-  border-radius: 8px;
+  border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   flex: 1;
-  background: white;
+  background: #fffefb;
+  border: 1px solid #eadfc9;
 }
 
 @media (max-width: 768px) {
@@ -1062,11 +1112,12 @@ onUnmounted(() => {
   font-weight: 600;
   margin: 0 0 25px 0;
   padding: 14px 0;
-  color: #243b36;
+  color: #124b47;
   display: flex;
   align-items: center;
-  background: #f7f4ef;
-  border-bottom: 1px solid rgba(228, 221, 209, 0.9);
+  background: rgba(247, 244, 239, 0.93);
+  border-bottom: 1px solid rgba(212, 175, 110, 0.38);
+  letter-spacing: 0.02em;
 }
 
 .category-title .category-icon {
@@ -1122,11 +1173,11 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   background: white;
-  border-radius: 8px;
+  border-radius: 16px;
   padding: 0;
   color: inherit;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  border: 1px solid #e4ddd1;
+  border: 1px solid #e9dcc3;
   position: relative;
   overflow: hidden;
   min-height: 360px;
@@ -1137,15 +1188,15 @@ onUnmounted(() => {
 }
 
 .site-card:hover {
-  transform: translateY(-2px);
-  border-color: #d9c6a6;
-  box-shadow: 0 14px 36px rgba(61, 48, 33, 0.12);
+  transform: translateY(-4px);
+  border-color: #d5aa57;
+  box-shadow: 0 18px 42px rgba(20, 75, 71, 0.16);
 }
 
 .site-media {
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, #e7f0e5 0%, #f8eddc 100%);
+  background: linear-gradient(135deg, #d9eee4 0%, #f9e7bd 100%);
   border-bottom: 1px solid #eee4d6;
   overflow: hidden;
   display: flex;
@@ -1220,8 +1271,8 @@ onUnmounted(() => {
 }
 
 .category-pill {
-  background: #edf5f1;
-  color: #31514a;
+  background: #e6f3ec;
+  color: #12615a;
 }
 
 .status-pill {
@@ -1301,7 +1352,7 @@ onUnmounted(() => {
 }
 
 .site-action-btn.contact {
-  background: #d26f3d;
+  background: #c96b35;
 }
 
 .site-action-btn.contact:hover {
@@ -1309,7 +1360,7 @@ onUnmounted(() => {
 }
 
 .site-action-btn.channel {
-  background: #31514a;
+  background: #12615a;
 }
 
 .site-action-btn.channel:hover {
