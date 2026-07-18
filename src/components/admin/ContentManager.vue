@@ -110,8 +110,24 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label>封面图链接</label>
-              <input v-model="formData.image" type="url" class="form-input" placeholder="https://...">
+              <label>封面图</label>
+              <div class="image-upload-row">
+                <input
+                  ref="imageFileInput"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/gif"
+                  class="image-file-input"
+                  @change="uploadCoverImage"
+                >
+                <span class="upload-hint">支持 JPG、PNG、WebP、GIF，最大 5MB</span>
+              </div>
+              <div v-if="imageUploading" class="upload-status">图片上传中，请稍候…</div>
+              <div v-else-if="formData.image" class="image-status">
+                <img :src="imagePreview || formData.image" alt="封面预览" class="cover-preview">
+                <span>已设置封面</span>
+                <button type="button" class="remove-image-btn" @click="removeCoverImage">移除</button>
+              </div>
+              <input v-model="formData.image" type="url" class="form-input image-url-input" placeholder="也可粘贴 https:// 图片链接">
             </div>
             <div class="form-group">
               <label>{{ type === 'guides' ? '地图链接' : '详情链接' }}</label>
@@ -144,6 +160,7 @@
 
 <script setup>
 import { computed, ref, watch } from 'vue'
+import { useGitHubAPI } from '../../apis/useGitHubAPI.js'
 
 const props = defineProps({
   type: {
@@ -190,6 +207,10 @@ const config = computed(() => configs[props.type] || configs.articles)
 const localItems = ref([])
 const showModal = ref(false)
 const editingItem = ref(null)
+const imageFileInput = ref(null)
+const imageUploading = ref(false)
+const imagePreview = ref('')
+const { uploadBinaryFile } = useGitHubAPI()
 
 const getEmptyForm = () => ({
   title: '',
@@ -263,6 +284,7 @@ const syncToParent = () => {
 const openAddModal = () => {
   editingItem.value = null
   formData.value = getEmptyForm()
+  imagePreview.value = ''
   showModal.value = true
 }
 
@@ -272,7 +294,48 @@ const editItem = (item) => {
     ...getEmptyForm(),
     ...JSON.parse(JSON.stringify(item))
   }
+  imagePreview.value = ''
   showModal.value = true
+}
+
+const uploadCoverImage = async (event) => {
+  const file = event.target.files?.[0]
+  if (!file) return
+
+  if (!['image/jpeg', 'image/png', 'image/webp', 'image/gif'].includes(file.type)) {
+    alert('请选择 JPG、PNG、WebP 或 GIF 图片。')
+    event.target.value = ''
+    return
+  }
+
+  if (file.size > 5 * 1024 * 1024) {
+    alert('图片不能超过 5MB。')
+    event.target.value = ''
+    return
+  }
+
+  const extension = file.name.split('.').pop()?.toLowerCase() || 'jpg'
+  const safeExtension = ['jpg', 'jpeg', 'png', 'webp', 'gif'].includes(extension) ? extension : 'jpg'
+  const path = `public/uploads/content/${props.type}-${Date.now()}.${safeExtension}`
+
+  imageUploading.value = true
+  try {
+    await uploadBinaryFile(path, await file.arrayBuffer(), `chore: 上传${config.value.itemName}封面图`)
+    formData.value.image = `/uploads/content/${path.split('/').pop()}`
+    imagePreview.value = URL.createObjectURL(file)
+  } catch (error) {
+    console.error('封面图上传失败:', error)
+    alert(`图片上传失败：${error.message || '请稍后重试'}`)
+  } finally {
+    imageUploading.value = false
+    event.target.value = ''
+  }
+}
+
+const removeCoverImage = () => {
+  formData.value.image = ''
+  imagePreview.value = ''
+  if (imageFileInput.value) imageFileInput.value.value = ''
 }
 
 const deleteItem = (item) => {
@@ -304,6 +367,7 @@ const closeModal = () => {
   showModal.value = false
   editingItem.value = null
   formData.value = getEmptyForm()
+  imagePreview.value = ''
 }
 
 const emitSave = () => {
@@ -516,6 +580,61 @@ const emitSave = () => {
 
 .content-form {
   padding: 22px;
+}
+
+.image-upload-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.image-file-input {
+  max-width: 100%;
+  font-size: 13px;
+}
+
+.upload-hint,
+.upload-status {
+  color: #64748b;
+  font-size: 12px;
+}
+
+.upload-status {
+  margin: 6px 0;
+  color: #2563eb;
+}
+
+.image-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 8px 0;
+  color: #166534;
+  font-size: 13px;
+}
+
+.cover-preview {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #dbe4ee;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.remove-image-btn {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 8px;
+  color: #b91c1c;
+  background: #fef2f2;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.image-url-input {
+  margin-top: 5px;
 }
 
 .form-row {
