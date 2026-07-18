@@ -1,5 +1,8 @@
 import { ref } from 'vue'
 import { mockData } from '../mock/mock_data.js'
+import { withLankaAssistantCatalog } from '../mock/lankaAssistantCatalog.js'
+
+const catalogData = withLankaAssistantCatalog(mockData)
 
 export function useNavigation() {
   const categories = ref([])
@@ -22,16 +25,16 @@ export function useNavigation() {
       }
 
       // 默认使用本地mock数据
-      categories.value = mockData.categories
-      articles.value = mockData.articles || []
-      guides.value = mockData.guides || []
-      jobs.value = mockData.jobs || []
-      title.value = mockData.title
+      categories.value = catalogData.categories
+      articles.value = catalogData.articles || []
+      guides.value = catalogData.guides || []
+      jobs.value = catalogData.jobs || []
+      title.value = catalogData.title
 
       // 设置默认搜索引擎，如果未指定或不存在则使用bing
       const searchEngines = ['google', 'baidu', 'bing', 'duckduckgo']
-      if (mockData.search && searchEngines.includes(mockData.search)) {
-        defaultSearchEngine.value = mockData.search
+      if (catalogData.search && searchEngines.includes(catalogData.search)) {
+        defaultSearchEngine.value = catalogData.search
       } else {
         defaultSearchEngine.value = 'bing'
       }
@@ -44,16 +47,16 @@ export function useNavigation() {
       error.value = err.message
       console.error('Error fetching categories:', err)
       // 兜底：始终返回 mock 数据
-      categories.value = mockData.categories
-      articles.value = mockData.articles || []
-      guides.value = mockData.guides || []
-      jobs.value = mockData.jobs || []
-      title.value = mockData.title
+      categories.value = catalogData.categories
+      articles.value = catalogData.articles || []
+      guides.value = catalogData.guides || []
+      jobs.value = catalogData.jobs || []
+      title.value = catalogData.title
 
       // 设置默认搜索引擎
       const searchEngines = ['google', 'baidu', 'bing', 'duckduckgo']
-      if (mockData.search && searchEngines.includes(mockData.search)) {
-        defaultSearchEngine.value = mockData.search
+      if (catalogData.search && searchEngines.includes(catalogData.search)) {
+        defaultSearchEngine.value = catalogData.search
       } else {
         defaultSearchEngine.value = 'bing'
       }
