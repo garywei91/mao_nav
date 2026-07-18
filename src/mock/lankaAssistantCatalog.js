@@ -1,4 +1,4 @@
-import assistantSource from '../../imports/lkxzsbot-staging.json'
+import assistantSource from './lkxzsbot-staging.json'
 
 const categoryIcons = {
   '餐厅饭店': '🍜',
